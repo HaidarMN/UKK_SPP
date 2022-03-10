@@ -2,10 +2,10 @@
     <div class="content">
         <h1 >DATA KELAS</h1>
 
-        <!-- Add | Search | Btn -->
+        <!-- Add | Search | Button -->
         <div class="grid">
-            <router-link class="button-add grid-left" to="/">
-                <i class='bx bx-plus button-icon'></i>
+            <router-link class="button-add grid-left" to="/tambahkelas">
+                <i class='bx bxs-file-plus button-icon'></i>
                 <span class="button-text">Add</span>
             </router-link>
             <input type="text" name="search" v-model="search" class="form-control grid-center" placeholder="Search..." 
@@ -35,11 +35,11 @@
                     <td>{{kel.angkatan}}</td>
                     <td>
                         <router-link class="button-edit" to="/">
-                            <i class='bx bx-edit-alt button-icon'></i>
+                            <i class='bx bxs-edit-alt button-icon'></i>
                         </router-link>
                         &nbsp;
                         <button class="button-del">
-                            <i class='bx bx-trash button-icon'></i>
+                            <i class='bx bxs-trash button-icon'></i>
                         </button>
                     </td>
                 </tr>
@@ -60,16 +60,16 @@
 
         methods: {
             cari:function() {
-                this.axios.get("http://localhost/lat_spp/public/api/kelas/" + this.search).then((result)=>{
-                    this.kelas = result.data
+                this.axios.get("http://localhost/lat_spp/public/api/kelas/" + this.search).then((result) => {
                     // console.log(result)
+                    this.kelas = result.data
                 })
             },
 
             getkelas:function() {
-                this.axios.get("http://localhost/lat_spp/public/api/kelas").then((result)=>{
-                    this.kelas = result.data
+                this.axios.get("http://localhost/lat_spp/public/api/kelas").then((result) => {
                     // console.log(result)
+                    this.kelas = result.data
                 })
             }
         },
