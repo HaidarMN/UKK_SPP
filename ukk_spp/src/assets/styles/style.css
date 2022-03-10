@@ -20,6 +20,19 @@ a {
     text-decoration: none;
 }
 
+/* Arrow Number Hidden */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 /* Sidebar Header */
 .sidebar {
     position: fixed;
@@ -204,7 +217,7 @@ a {
 
 .content h1 {
     font-weight: bold;
-    color: #808080;
+    color: #696969;
     margin: 25px;
     text-align: center;
 }
@@ -212,6 +225,14 @@ a {
 .content .text {
     color: #808080;
     margin: 25px;
+}
+
+.content .add-form {
+    margin: 25px;
+    width: calc(100% - 50px);
+    left: 78px;
+    color: #696969;
+    font-size: 18px;
 }
 
 .sidebar.active ~ .content {
@@ -334,6 +355,25 @@ a {
 
 .button-del:hover {
     background: #D10000;
+}
+
+.button-back {
+    display: inline-flex;
+    height: 38px;
+    padding: 0;
+    background: #808080;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    float: right;
+}
+
+.button-back:hover {
+    background: #696969;
 }
 
 .button-text,
