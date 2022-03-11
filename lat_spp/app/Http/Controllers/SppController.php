@@ -83,6 +83,12 @@ class SppController extends Controller
         return Response()->json(['data'=>$getspp]);
     }
 
+    //GET 1 DATA
+    public function getdetail($id_spp){
+        $detail=Spp::where('id_spp', $id_spp)->first();
+        return Response()->json($detail);
+    }
+
     //SEARCH
     public function cari_data($kata_kunci) {
         $detail = Spp::where('angkatan', 'like', '%'.$kata_kunci.'%')->get();

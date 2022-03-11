@@ -97,6 +97,12 @@ class SiswaController extends Controller
         return Response()->json(['data'=>$getsiswa]);
     }
 
+    //GET 1 DATA
+    public function getdetail($nisn){
+        $detail=Siswa::where('nisn', $nisn)->first();
+        return Response()->json($detail);
+    }
+
     //SEARCH
     public function cari_data($kata_kunci) {
         $detail = Siswa::where('nama', 'like', '%'.$kata_kunci.'%')->get();

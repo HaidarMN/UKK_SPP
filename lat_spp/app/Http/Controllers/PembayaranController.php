@@ -79,6 +79,12 @@ class PembayaranController extends Controller
         return Response()->json(['data'=>$getpembayaran]);
     }
 
+    //GET 1 DATA
+    public function getdetail($id_pembayaran){
+        $detail=Pembayaran::where('id_pe$id_pembayaran', $id_pembayaran)->first();
+        return Response()->json($detail);
+    }
+
     //SEARCH
     public function cari_data($kata_kunci) {
         $detail = Pembayaran::where('nisn', 'like', '%'.$kata_kunci.'%')->get();

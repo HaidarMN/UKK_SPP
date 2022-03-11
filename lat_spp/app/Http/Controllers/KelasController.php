@@ -84,6 +84,12 @@ class KelasController extends Controller
         return Response()->json($getkelas);
     }
 
+    //GET 1 DATA
+    public function getdetail($id_kelas){
+        $detail=Kelas::where('id_kelas', $id_kelas)->first();
+        return Response()->json($detail);
+    }
+
     //SEARCH
     public function cari_data($kata_kunci) {
         $detail = Kelas::where('nama_kelas', 'like', '%'.$kata_kunci.'%')->get();

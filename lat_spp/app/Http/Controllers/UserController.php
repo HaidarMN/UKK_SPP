@@ -78,18 +78,6 @@ class UserController extends Controller
         }
         return $data;
     }
-
-    //GET
-    public function user() {
-        $getuser=User::get();
-        return Response()->json(['data'=>$getuser]);
-    }
-
-    //SEARCH
-    public function cari_data($kata_kunci) {
-        $detail = User::where('name', 'like', '%'.$kata_kunci.'%')->get();
-        return Response()->json($detail);
-    }
     
     //DELETE
     public function destroy($id) {
@@ -103,6 +91,25 @@ class UserController extends Controller
         }
         return $data;
     }
+
+    //GET
+    public function user() {
+        $getuser=User::get();
+        return Response()->json(['data'=>$getuser]);
+    }
+
+    //GET 1 DATA
+    public function getdetail($id){
+        $detail=User::where('id', $id)->first();
+        return Response()->json($detail);
+    }
+
+    //SEARCH
+    public function cari_data($kata_kunci) {
+        $detail = User::where('name', 'like', '%'.$kata_kunci.'%')->get();
+        return Response()->json($detail);
+    }
+    
 
     public function getAuthenticatedUser()
     {
