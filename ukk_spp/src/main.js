@@ -12,6 +12,8 @@ import TambahKelas from './components/TambahKelas.vue'
 import EditKelas from './components/EditKelas.vue'
 // Siswa
 import Siswa from './components/Siswa.vue'
+// Login
+import Login from './components/Login.vue'
 
 const router = createRouter({
     history : createWebHistory(),
@@ -20,10 +22,12 @@ const router = createRouter({
         {path: '/', name: "Dashboard", component: Dashboard},
         // Kelas
         {path: '/kelas', name: "Kelas", component: Kelas},
-        {path: '/tambahkelas', name: "TambahKelas", component: TambahKelas},
-        {path: '/editkelas', name: "EditKelas", component: EditKelas},
+        {path: '/kelas/tambahkelas', name: "TambahKelas", component: TambahKelas},
+        {path: '/kelas/editkelas/:id_kelas', name: "EditKelas", component: EditKelas},
         // Siswa
         {path: '/siswa', name: "Siswa", component: Siswa},       
+        // Login
+        {path: '/login', name: "Login", component: Login},
     ],
     base : '/'
 })
