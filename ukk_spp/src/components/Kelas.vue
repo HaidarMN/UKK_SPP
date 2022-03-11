@@ -34,13 +34,13 @@
                     <td>{{kel.jurusan}}</td>
                     <td>{{kel.angkatan}}</td>
                     <td>
-                        <router-link class="button-edit" to="/">
+                        <router-link class="button-edit" :to="{path: '/kelas/editkelas/' + kel.id_kelas}">
                             <i class='bx bxs-edit-alt button-icon'></i>
                         </router-link>
                         &nbsp;
-                        <button class="button-del">
+                        <a class="button-del" @click="delkelas(kel.id_kelas)">
                             <i class='bx bxs-trash button-icon'></i>
-                        </button>
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -54,13 +54,20 @@
         data() {
             return {
                 kelas:[],
-                search:""
+                search:''
             }
         },
 
         methods: {
             cari:function() {
-                this.axios.get("http://localhost/lat_spp/public/api/kelas/" + this.search).then((result) => {
+                var data_cari = ""
+                if(this.search == "") {
+                    data_cari = ""
+                } else {
+                    data_cari = "/" + this.search
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/kelas" + data_cari).then((result) => {
                     // console.log(result)
                     this.kelas = result.data
                 })
@@ -71,6 +78,15 @@
                     // console.log(result)
                     this.kelas = result.data
                 })
+            },
+
+            delkelas:function(id_kelas) {
+                if(confirm('yakin?')) {
+                    this.axios.delete("http://localhost/lat_spp/public/api/delete_kelas/" + id_kelas).then((result) => {
+                        console.log(result)
+                        this.getkelas()
+                    })
+                }
             }
         },
 

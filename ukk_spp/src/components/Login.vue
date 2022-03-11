@@ -1,11 +1,11 @@
 <template>
-    <div class="content">
-        <h1>HALO</h1>
+    <div class="container">
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "Siswa",        
+        name: "Login"
     }
 </script>

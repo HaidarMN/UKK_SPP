@@ -27,6 +27,17 @@
                 <i class='bx bxs-chevron-left button-icon'></i>
                 <span class="button-text">Back</span>
             </router-link>
+
+            <!-- Notification -->
+            <br><br>
+            <div v-bind:class="style_msg">
+                <div v-if="error == true">
+                    <div v-for="msg in message" :key="msg.id_kelas">
+                        <p v-for="m in msg" :key="m.id_kelas">{{m}}</p>
+                    </div>
+                </div>
+                <p v-else>{{message}}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -36,9 +47,12 @@
         name: "TambahKelas",
         data() {
             return {
-                nama_kelas:"",
-                jurusan:"",
-                angkatan:""
+                nama_kelas:'',
+                jurusan:'',
+                angkatan:'',
+                style_msg: '',
+                message: '',
+                error:false
             }
         },
 
@@ -51,7 +65,21 @@
                 }
 
                 this.axios.post("http://localhost/lat_spp/public/api/insert_kelas", datakelas).then((result) => {
-                    console.log(result)
+                    // console.log(result)
+                    if(result.data.status == true) {
+                        this.error = false
+                        this.message = result.data.message
+                        this.style_msg = "alert alert-success"
+
+                        // Pergi ke halaman sebelumnya setelah 2000ms
+                        setTimeout(() => {
+                            this.$router.push('/kelas')
+                        }, 2000);
+                    } else {
+                        this.error = true
+                        this.message = result.data.message
+                        this.style_msg = "alert alert-danger"
+                    }
                 })
             }
         }
