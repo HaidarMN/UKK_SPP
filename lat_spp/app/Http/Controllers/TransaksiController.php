@@ -13,13 +13,13 @@ class TransaksiController extends Controller
 {
     //CEK BAYAR
     public function bayar(Request $req) {
-        $validaotr = Validator::make($req->all(), [
-            'nisn'          =>'required',
+        $validator = Validator::make($req->all(), [
+            'nisn'          => 'required',
             'bulan_spp'     => 'required',
             'tahun_spp'     => 'required',
         ]);
-        if($validaotr->fails()) {
-            return Response()->json($validaotr->errors()->toJson(), 400);
+        if($validator->fails()) {
+            return Response()->json($validator->errors()->toJson(), 400);
         }
         $ceklunas=tunggakan::where('nisn', $req->get('nisn'))
             ->where('bulan_spp', $req->get('bulan_spp'))
