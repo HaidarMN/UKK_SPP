@@ -80,7 +80,7 @@ class SppController extends Controller
     //GET
     public function spp() {
         $getspp=Spp::get();
-        return Response()->json(['data'=>$getspp]);
+        return Response()->json($getspp);
     }
 
     //GET 1 DATA

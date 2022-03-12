@@ -76,7 +76,7 @@ class PembayaranController extends Controller
     //GET
     public function pembayaran() {
         $getpembayaran = Pembayaran::get();
-        return Response()->json(['data'=>$getpembayaran]);
+        return Response()->json($getpembayaran);
     }
 
     //GET 1 DATA

@@ -94,7 +94,7 @@ class SiswaController extends Controller
     //GET
     public function siswa() {
         $getsiswa=Siswa::get();
-        return Response()->json(['data'=>$getsiswa]);
+        return Response()->json($getsiswa);
     }
 
     //GET 1 DATA

@@ -95,7 +95,7 @@ class UserController extends Controller
     //GET
     public function user() {
         $getuser=User::get();
-        return Response()->json(['data'=>$getuser]);
+        return Response()->json($getuser);
     }
 
     //GET 1 DATA
