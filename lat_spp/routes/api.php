@@ -24,12 +24,12 @@ Route::post('register_siswa', 'LogSisController@register');
 // Route::post('register', 'UserController@register');
 Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
 
-Route::get('kelas', 'KelasController@kelas');
-Route::get('/kelas/{id}', 'KelasController@cari_data');
-Route::post("/insert_kelas", "KelasController@store");
-Route::put("/update_kelas/{id}", "KelasController@update");
-Route::delete("/delete_kelas/{id}", "KelasController@destroy");
-Route::get('/getkelas/{id}', 'KelasController@getdetail');
+// Route::get('kelas', 'KelasController@kelas');
+// Route::get('/kelas/{id}', 'KelasController@cari_data');
+// Route::post("/insert_kelas", "KelasController@store");
+// Route::put("/update_kelas/{id}", "KelasController@update");
+// Route::delete("/delete_kelas/{id}", "KelasController@destroy");
+// Route::get('/getkelas/{id}', 'KelasController@getdetail');
 
 //ADMIN
 Route::group(['middleware'=>['jwt.verify:admin']], function() {
@@ -38,11 +38,12 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::post('register', 'UserController@register');
 
     //KELAS
-    // Route::get('kelas', 'KelasController@kelas');
-    // Route::post("/insert_kelas", "KelasController@store");
-    // Route::put("/update_kelas/{id}", "KelasController@update");
-    // Route::delete("/delete_kelas/{id}", "KelasController@destroy");
-    // Route::get('/kelas/{id}', 'KelasController@cari_data');
+    Route::get('kelas', 'KelasController@kelas');
+    Route::post("/insert_kelas", "KelasController@store");
+    Route::put("/update_kelas/{id}", "KelasController@update");
+    Route::delete("/delete_kelas/{id}", "KelasController@destroy");
+    Route::get('/kelas/{id}', 'KelasController@cari_data');
+    Route::get('/getkelas/{id}', 'KelasController@getdetail');
 
     //SISWA
     Route::get('siswa', 'SiswaController@siswa');
