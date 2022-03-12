@@ -190,6 +190,11 @@ input[type=number] {
     font-size: 12px;
 }
 
+.profile a {
+    text-decoration: none;
+    color: white;
+}
+
 .profile #log-out {
     position: absolute;
     bottom: 5px;
