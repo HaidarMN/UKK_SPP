@@ -58,13 +58,19 @@
 
         methods: {
             addkelas:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
                 var datakelas = {
                     nama_kelas:this.nama_kelas,
                     jurusan:this.jurusan,
                     angkatan:this.angkatan
                 }
 
-                this.axios.post("http://localhost/lat_spp/public/api/insert_kelas", datakelas).then((result) => {
+                this.axios.post("http://localhost/lat_spp/public/api/insert_kelas", datakelas, option).then((result) => {
                     // console.log(result)
                     if(result.data.status == true) {
                         this.error = false

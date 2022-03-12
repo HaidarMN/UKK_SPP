@@ -1,10 +1,10 @@
 <template>
     <div class="content">
-        <h1 >DATA SISWA</h1>
+        <h1 >DATA PETUGAS</h1>
 
         <!-- Add | Search | Button -->
         <div class="grid">
-            <router-link class="button-add grid-left" to="/siswa/tambahsiswa">
+            <router-link class="button-add grid-left" to="/petugas/tambahpetugas">
                 <i class='bx bxs-file-plus button-icon'></i>
                 <span class="button-text">Add</span>
             </router-link>
@@ -20,29 +20,25 @@
         <table class="content-table">
             <thead>
                 <tr>
-                    <th>NISN</th>
-                    <th>NIS</th>
+                    <th>ID</th>
                     <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>No Telp</th>
                     <th>E-mail</th>
+                    <th>Level</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="sis in siswa" :key="sis.nisn">
-                    <td>{{sis.nisn}}</td>
-                    <td>{{sis.nis}}</td>
-                    <td>{{sis.nama}}</td>
-                    <td>{{sis.alamat}}</td>
-                    <td>{{sis.no_telp}}</td>
-                    <td>{{sis.email}}</td>
+                <tr v-for="us in user" :key="us.id">
+                    <td>{{us.id}}</td>
+                    <td>{{us.name}}</td>
+                    <td>{{us.email}}</td>
+                    <td>{{us.level}}</td>
                     <td>
-                        <router-link class="button-edit" :to="{path: '/siswa/editsiswa/' + sis.nisn}">
+                        <router-link class="button-edit" :to="{path: '/petugas/editpetugas/' + us.id}">
                             <i class='bx bxs-edit-alt button-icon'></i>
                         </router-link>
                         &nbsp;
-                        <a class="button-del" @click="delsiswa(sis.nisn)">
+                        <a class="button-del" @click="delpetugas(us.id)">
                             <i class='bx bxs-trash button-icon'></i>
                         </a>
                     </td>
@@ -54,10 +50,10 @@
 
 <script>
     export default {
-        name: "Siswa",
+        name: "User",
         data() {
             return {
-                siswa:[],
+                user:[],
                 search:''
             }
         },
@@ -77,26 +73,26 @@
                     data_cari = "/" + this.search
                 }
 
-                this.axios.get("http://localhost/lat_spp/public/api/siswa" + data_cari, option).then((result) => {
+                this.axios.get("http://localhost/lat_spp/public/api/user" + data_cari, option).then((result) => {
                     // console.log(result)
-                    this.siswa = result.data
+                    this.user = result.data
                 })
             },
 
-            getsiswa:function() {
+            getpetugas:function() {
                 var option = {
                     headers:{
                         'Authorization':'bearer ' + localStorage.getItem("token")
                     }
                 }
 
-                this.axios.get("http://localhost/lat_spp/public/api/siswa", option).then((result) => {
-                    console.log(result)
-                    this.siswa = result.data
+                this.axios.get("http://localhost/lat_spp/public/api/user", option).then((result) => {
+                    // console.log(result)
+                    this.user = result.data
                 })
             },
 
-            delsiswa:function(nisn) {
+            delpetugas:function(id) {
                 var option = {
                     headers:{
                         'Authorization':'bearer ' + localStorage.getItem("token")
@@ -104,16 +100,16 @@
                 }
 
                 if(confirm('yakin?')) {
-                    this.axios.delete("http://localhost/lat_spp/public/api/delete_siswa/" + nisn, option).then((result) => {
+                    this.axios.delete("http://localhost/lat_spp/public/api/delete_user/" + id, option).then((result) => {
                         console.log(result)
-                        this.getsiswa()
+                        this.getpetugas()
                     })
                 }
             }
         },
 
         mounted() {
-            this.getsiswa()
+            this.getpetugas()
         }
     }
 </script>

@@ -1,10 +1,10 @@
 <template>
     <div class="content">
-        <h1 >DATA SISWA</h1>
+        <h1 >DATA SPP</h1>
 
         <!-- Add | Search | Button -->
         <div class="grid">
-            <router-link class="button-add grid-left" to="/siswa/tambahsiswa">
+            <router-link class="button-add grid-left" to="/spp/tambahspp">
                 <i class='bx bxs-file-plus button-icon'></i>
                 <span class="button-text">Add</span>
             </router-link>
@@ -20,29 +20,25 @@
         <table class="content-table">
             <thead>
                 <tr>
-                    <th>NISN</th>
-                    <th>NIS</th>
-                    <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>No Telp</th>
-                    <th>E-mail</th>
+                    <th>ID</th>
+                    <th>Angkatan</th>
+                    <th>Tahun</th>
+                    <th>Noiminal</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="sis in siswa" :key="sis.nisn">
-                    <td>{{sis.nisn}}</td>
-                    <td>{{sis.nis}}</td>
-                    <td>{{sis.nama}}</td>
-                    <td>{{sis.alamat}}</td>
-                    <td>{{sis.no_telp}}</td>
-                    <td>{{sis.email}}</td>
+                <tr v-for="s in spp" :key="s.id_spp">
+                    <td>{{s.id_spp}}</td>
+                    <td>{{s.angkatan}}</td>
+                    <td>{{s.tahun}}</td>
+                    <td>{{s.nominal}}</td>
                     <td>
-                        <router-link class="button-edit" :to="{path: '/siswa/editsiswa/' + sis.nisn}">
+                        <router-link class="button-edit" :to="{path: '/spp/editspp/' + s.id_spp}">
                             <i class='bx bxs-edit-alt button-icon'></i>
                         </router-link>
                         &nbsp;
-                        <a class="button-del" @click="delsiswa(sis.nisn)">
+                        <a class="button-del" @click="delspp(s.id_spp)">
                             <i class='bx bxs-trash button-icon'></i>
                         </a>
                     </td>
@@ -54,10 +50,10 @@
 
 <script>
     export default {
-        name: "Siswa",
+        name: "Spp",
         data() {
             return {
-                siswa:[],
+                spp:[],
                 search:''
             }
         },
@@ -77,26 +73,26 @@
                     data_cari = "/" + this.search
                 }
 
-                this.axios.get("http://localhost/lat_spp/public/api/siswa" + data_cari, option).then((result) => {
+                this.axios.get("http://localhost/lat_spp/public/api/spp" + data_cari, option).then((result) => {
                     // console.log(result)
-                    this.siswa = result.data
+                    this.spp = result.data
                 })
             },
 
-            getsiswa:function() {
+            getspp:function() {
                 var option = {
                     headers:{
                         'Authorization':'bearer ' + localStorage.getItem("token")
                     }
                 }
 
-                this.axios.get("http://localhost/lat_spp/public/api/siswa", option).then((result) => {
-                    console.log(result)
-                    this.siswa = result.data
+                this.axios.get("http://localhost/lat_spp/public/api/spp", option).then((result) => {
+                    // console.log(result)
+                    this.spp = result.data
                 })
             },
 
-            delsiswa:function(nisn) {
+            delspp:function(id_spp) {
                 var option = {
                     headers:{
                         'Authorization':'bearer ' + localStorage.getItem("token")
@@ -104,16 +100,16 @@
                 }
 
                 if(confirm('yakin?')) {
-                    this.axios.delete("http://localhost/lat_spp/public/api/delete_siswa/" + nisn, option).then((result) => {
+                    this.axios.delete("http://localhost/lat_spp/public/api/delete_spp/" + id_spp, option).then((result) => {
                         console.log(result)
-                        this.getsiswa()
+                        this.getspp()
                     })
                 }
             }
         },
 
         mounted() {
-            this.getsiswa()
+            this.getspp()
         }
     }
 </script>

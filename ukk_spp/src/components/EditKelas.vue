@@ -60,7 +60,13 @@
 
         methods: {
             getdetail(id_kelas) {
-                this.axios.get("http://localhost/lat_spp/public/api/getkelas/" + id_kelas).then((result) => {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/getkelas/" + id_kelas, option).then((result) => {
                     // console.log(result)
                     this.id_kelas   = result.data.id_kelas,
                     this.nama_kelas = result.data.nama_kelas,
@@ -70,13 +76,19 @@
             },
 
             editkelas:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
                 var datakelas = {
                     nama_kelas:this.nama_kelas,
                     jurusan:this.jurusan,
                     angkatan:this.angkatan
                 }
 
-                this.axios.put("http://localhost/lat_spp/public/api/update_kelas/" + this.id_kelas, datakelas).then((result) => {
+                this.axios.put("http://localhost/lat_spp/public/api/update_kelas/" + this.id_kelas, datakelas, option).then((result) => {
                     console.log(result)
                     if(result.data.status == true) {
                         this.error = false

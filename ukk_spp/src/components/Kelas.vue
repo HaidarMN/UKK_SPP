@@ -4,7 +4,7 @@
 
         <!-- Add | Search | Button -->
         <div class="grid">
-            <router-link class="button-add grid-left" to="/tambahkelas">
+            <router-link class="button-add grid-left" to="/kelas/tambahkelas">
                 <i class='bx bxs-file-plus button-icon'></i>
                 <span class="button-text">Add</span>
             </router-link>
@@ -60,6 +60,12 @@
 
         methods: {
             cari:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
                 var data_cari = ""
                 if(this.search == "") {
                     data_cari = ""
@@ -67,22 +73,34 @@
                     data_cari = "/" + this.search
                 }
 
-                this.axios.get("http://localhost/lat_spp/public/api/kelas" + data_cari).then((result) => {
+                this.axios.get("http://localhost/lat_spp/public/api/kelas" + data_cari, option).then((result) => {
                     // console.log(result)
                     this.kelas = result.data
                 })
             },
 
             getkelas:function() {
-                this.axios.get("http://localhost/lat_spp/public/api/kelas").then((result) => {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/kelas", option).then((result) => {
                     // console.log(result)
                     this.kelas = result.data
                 })
             },
 
             delkelas:function(id_kelas) {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
                 if(confirm('yakin?')) {
-                    this.axios.delete("http://localhost/lat_spp/public/api/delete_kelas/" + id_kelas).then((result) => {
+                    this.axios.delete("http://localhost/lat_spp/public/api/delete_kelas/" + id_kelas, option).then((result) => {
                         console.log(result)
                         this.getkelas()
                     })
