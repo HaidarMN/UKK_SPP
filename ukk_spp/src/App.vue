@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" v-if="authenticated">
     <div class="logo-content">
       <div class="logo">
         <i class='bx bxl-vuejs'></i>
@@ -27,19 +27,19 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/petugas">
           <i class='bx bxs-user'></i>
           <span class="links-name">Petugas</span>
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/spp">
           <i class='bx bx-dollar'></i>
           <span class="links-name">SPP</span>
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/pembayaran">
           <i class='bx bxs-wallet-alt'></i>
           <span class="links-name">Pembayaran</span>
         </router-link>
@@ -54,16 +54,42 @@
             <div class="job">admin</div>
           </div>
         </div>
-        <i class='bx bx-log-out' id="log-out"></i>
+        <router-link to="/login" @click="logout()">
+          <i class='bx bx-log-out' id="log-out"></i>
+        </router-link>
       </div>
     </div>
   </div>
-  <router-view></router-view>
+  <router-view @authenticated = "setAuthenticated"></router-view>
 </template>
 
 <script>
   export default {
     name: 'App',
+    data() {
+      return {
+        // JSON.parse merubah data ke Boolean
+        authenticated:JSON.parse(localStorage.getItem('status'))
+      }
+    },
+
+    methods: {
+      setAuthenticated(status) {
+        this.authenticated = status
+      },
+
+      logout() {
+        this.authenticated = false
+        localStorage.removeItem('status')
+        localStorage.removeItem('token')
+      }
+    },
+
+    mounted() {
+      if(!this.authenticated) {
+        this.$router.replace({name: "Login"})
+      }
+    }
   }
 </script>
 

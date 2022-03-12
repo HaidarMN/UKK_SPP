@@ -12,6 +12,12 @@ import TambahKelas from './components/TambahKelas.vue'
 import EditKelas from './components/EditKelas.vue'
 // Siswa
 import Siswa from './components/Siswa.vue'
+// Petugas
+import Petugas from './components/Petugas.vue'
+// SPP
+import Spp from './components/Spp.vue'
+// Pembayaran
+import Pembayaran from './components/Pembayaran.vue'
 // Login
 import Login from './components/Login.vue'
 
@@ -26,6 +32,12 @@ const router = createRouter({
         {path: '/kelas/editkelas/:id_kelas', name: "EditKelas", component: EditKelas},
         // Siswa
         {path: '/siswa', name: "Siswa", component: Siswa},       
+        // Petugas
+        {path: '/petugas', name: "Petugas", component: Petugas},       
+        // Spp
+        {path: '/spp', name: "Spp", component: Spp},       
+        // Pembayaran
+        {path: '/pembayaran', name: "Pembayaran", component: Pembayaran},       
         // Login
         {path: '/login', name: "Login", component: Login},
     ],
