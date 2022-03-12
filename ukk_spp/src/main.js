@@ -12,12 +12,16 @@ import TambahKelas from './components/TambahKelas.vue'
 import EditKelas from './components/EditKelas.vue'
 // Siswa
 import Siswa from './components/Siswa.vue'
+import TambahSiswa from './components/TambahSiswa.vue'
 // Petugas
 import Petugas from './components/Petugas.vue'
+import TambahPetugas from './components/TambahPetugas.vue'
 // SPP
 import Spp from './components/Spp.vue'
+import TambahSpp from './components/TambahSpp.vue'
 // Pembayaran
 import Pembayaran from './components/Pembayaran.vue'
+import TambahPembayaran from './components/TambahPembayaran.vue'
 // Login
 import Login from './components/Login.vue'
 
@@ -31,13 +35,17 @@ const router = createRouter({
         {path: '/kelas/tambahkelas', name: "TambahKelas", component: TambahKelas},
         {path: '/kelas/editkelas/:id_kelas', name: "EditKelas", component: EditKelas},
         // Siswa
-        {path: '/siswa', name: "Siswa", component: Siswa},       
+        {path: '/siswa', name: "Siswa", component: Siswa},
+        {path: '/siswa/tambahsiswa', name: "TambahSiswa", component: TambahSiswa},
         // Petugas
-        {path: '/petugas', name: "Petugas", component: Petugas},       
+        {path: '/petugas', name: "Petugas", component: Petugas},
+        {path: '/petugas/tambahpetugas', name: "TambahPetugas", component: TambahPetugas},
         // Spp
-        {path: '/spp', name: "Spp", component: Spp},       
+        {path: '/spp', name: "Spp", component: Spp},
+        {path: '/spp/tambahspp', name: "TambahSpp", component: TambahSpp},        
         // Pembayaran
-        {path: '/pembayaran', name: "Pembayaran", component: Pembayaran},       
+        {path: '/pembayaran', name: "Pembayaran", component: Pembayaran},
+        {path: '/pembayaran/tambahpembayaran', name: "TambahPembayaran", component: TambahPembayaran},
         // Login
         {path: '/login', name: "Login", component: Login},
     ],
