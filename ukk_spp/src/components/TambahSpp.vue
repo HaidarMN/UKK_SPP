@@ -16,14 +16,14 @@
             <br>
 
             <!-- Button -->
-            <button class="button-add" @click="addspp()">
-                <i class='bx bxs-file-plus button-icon'></i>
-                <span class="button-text">Add</span>
-            </button>
             <router-link class="button-back" to="/spp">
                 <i class='bx bxs-chevron-left button-icon'></i>
                 <span class="button-text">Back</span>
             </router-link>
+            <button class="button-add" @click="addspp()">
+                <i class='bx bxs-file-plus button-icon'></i>
+                <span class="button-text">Add</span>
+            </button>
 
             <!-- Notification -->
             <br><br>

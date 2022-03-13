@@ -18,6 +18,10 @@
             <input type="password" name="password" class="form-control" v-model="password" placeholder="Masukkan password" 
             autocomplete="off">
             <br>
+            Password Confirmation
+            <input type="password" name="password_confirmation" class="form-control" v-model="password_confirmation" 
+            placeholder="Ulangi password" autocomplete="off">
+            <br>
             Level
             <select name="level" class="form-control" v-model="level">
                 <option value="" selected hidden disabled>Pilih level</option>
@@ -27,14 +31,14 @@
             <br>
 
             <!-- Button -->
-            <button class="button-add" @click="addpetugas()">
-                <i class='bx bxs-file-plus button-icon'></i>
-                <span class="button-text">Add</span>
-            </button>
             <router-link class="button-back" to="/petugas">
                 <i class='bx bxs-chevron-left button-icon'></i>
                 <span class="button-text">Back</span>
             </router-link>
+            <button class="button-add" @click="addpetugas()">
+                <i class='bx bxs-file-plus button-icon'></i>
+                <span class="button-text">Add</span>
+            </button>
 
             <!-- Notification -->
             <br><br>
@@ -59,6 +63,7 @@
                 username:'',
                 email:'',
                 password:'',
+                password_confirmation:'',
                 level:'',
                 id_petugas:'',
                 style_msg: '',
@@ -100,15 +105,17 @@
                 })
 
                 var datauser = {
-                    name:this.nama_petugas,
+                    nama_petugas:this.nama_petugas,
+                    username:this.username,
                     email:this.email,
                     password:this.password,
+                    password_confirmation:this.password_confirmation,
                     level:this.level,
                     id_petugas:this.id_petugas
                 }
 
-                this.axios.post("http://localhost/lat_spp/public/api/insert_user", datauser, option).then((result) => {
-                    // console.log(result)
+                this.axios.post("http://localhost/lat_spp/public/api/register", datauser, option).then((result) => {
+                    console.log(result)
                     if(result.data.status == true) {
                         this.error = false
                         this.message = result.data.message

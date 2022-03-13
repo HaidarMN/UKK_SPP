@@ -4,16 +4,12 @@
 
         <!-- Add | Search | Button -->
         <div class="grid">
-            <router-link class="button-add grid-left" to="/siswa/tambahsiswa">
+            <input type="text" name="search" v-model="search" class="form-control grid-left" placeholder="Search..." 
+            @keyup.enter="cari()" autocomplete="off">
+            <router-link class="button-add grid-right" to="/siswa/tambahsiswa">
                 <i class='bx bxs-file-plus button-icon'></i>
                 <span class="button-text">Add</span>
             </router-link>
-            <input type="text" name="search" v-model="search" class="form-control grid-center" placeholder="Search..." 
-            @keyup.enter="cari()" autocomplete="off">
-            <button class="button-edit grid-right" @click="cari()">
-                <i class='bx bx-search button-icon'></i>
-                <span class="button-text">Search</span>
-            </button>
         </div>
 
         <!-- Table -->

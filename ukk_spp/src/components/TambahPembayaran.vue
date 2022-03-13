@@ -20,14 +20,14 @@
             <br>
 
             <!-- Button -->
-            <button class="button-add" @click="addpembayaran()">
-                <i class='bx bxs-file-plus button-icon'></i>
-                <span class="button-text">Add</span>
-            </button>
             <router-link class="button-back" to="/pembayaran">
                 <i class='bx bxs-chevron-left button-icon'></i>
                 <span class="button-text">Back</span>
             </router-link>
+            <button class="button-add" @click="addpembayaran()">
+                <i class='bx bxs-file-plus button-icon'></i>
+                <span class="button-text">Add</span>
+            </button>
 
             <!-- Notification -->
             <br><br>
@@ -52,9 +52,10 @@
                 bulan_spp: '',
                 tahun_spp:'',
                 listbln:[
-                    {key:"1", val:"Januari"}, {key:"2", val:"Februari"}, {key:"3", val:"Maret"}, {key:"4", val:"April"},
-                    {key:"5", val:"Mei"}, {key:"6", val:"Juni"}, {key:"7", val:"Juli"}, {key:"8", val:"Agustus"},
-                    {key:"9", val:"September"}, {key:"10", val:"Oktober"}, {key:"11", val:"November"}, {key:"12", val:"Desember"}
+                    {key:"1", val:"Januari"}, {key:"2", val:"Februari"}, {key:"3", val:"Maret"},
+                    {key:"4", val:"April"}, {key:"5", val:"Mei"}, {key:"6", val:"Juni"},
+                    {key:"7", val:"Juli"}, {key:"8", val:"Agustus"}, {key:"9", val:"September"},
+                    {key:"10", val:"Oktober"}, {key:"11", val:"November"}, {key:"12", val:"Desember"}
                 ],
                 message: '',
                 error:false

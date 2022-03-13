@@ -2,6 +2,7 @@
     <div class="content">
         <!-- Form -->
         <div class="add-form">
+            <input type="hidden" name="id_kelas" v-model="id_kelas" class="form-control">
             Nama Kelas
             <input type="text" name="nama_kelas" class="form-control" v-model="nama_kelas" placeholder="Masukkan nama" 
             autocomplete="off">
@@ -19,14 +20,14 @@
             <br>
 
             <!-- Button -->
+            <button class="button-edit" @click="editkelas()">
+                <i class='bx bxs-edit-alt button-icon'></i>
+                <span class="button-text">Edit</span>
+            </button>
             <router-link class="button-back" to="/kelas">
                 <i class='bx bxs-chevron-left button-icon'></i>
                 <span class="button-text">Back</span>
             </router-link>
-            <button class="button-add" @click="addkelas()">
-                <i class='bx bxs-file-plus button-icon'></i>
-                <span class="button-text">Add</span>
-            </button>
 
             <!-- Notification -->
             <br><br>
@@ -44,9 +45,10 @@
 
 <script>
     export default {
-        name: "TambahKelas",
+        name: "EditKelas",
         data() {
             return {
+                id_kelas:'',
                 nama_kelas:'',
                 jurusan:'',
                 angkatan:'',
@@ -57,7 +59,23 @@
         },
 
         methods: {
-            addkelas:function() {
+            getdetail(id_kelas) {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/getkelas/" + id_kelas, option).then((result) => {
+                    // console.log(result)
+                    this.id_kelas   = result.data.id_kelas,
+                    this.nama_kelas = result.data.nama_kelas,
+                    this.jurusan    = result.data.jurusan,
+                    this.angkatan   = result.data.angkatan
+                })
+            },
+
+            editkelas:function() {
                 var option = {
                     headers:{
                         'Authorization':'bearer ' + localStorage.getItem("token")
@@ -70,8 +88,8 @@
                     angkatan:this.angkatan
                 }
 
-                this.axios.post("http://localhost/lat_spp/public/api/insert_kelas", datakelas, option).then((result) => {
-                    // console.log(result)
+                this.axios.put("http://localhost/lat_spp/public/api/update_kelas/" + this.id_kelas, datakelas, option).then((result) => {
+                    console.log(result)
                     if(result.data.status == true) {
                         this.error = false
                         this.message = result.data.message
@@ -88,6 +106,10 @@
                     }
                 })
             }
+        },
+
+        mounted() {
+            this.getdetail(this.$route.params.id_kelas)
         }
     }
 </script>

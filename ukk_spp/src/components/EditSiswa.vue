@@ -2,8 +2,9 @@
     <div class="content">
         <!-- Form -->
         <div class="add-form">
+            <input type="hidden" name="nisn" v-model="nisn" class="form-control">
             NIS
-            <input type="number" name="nis" class="form-control" v-model="nis" placeholder="Masukkan nis" 
+            <input type="number" name="nis" class="form-control" v-model="nis" placeholder="Masukkan nis"
             autocomplete="off">
             <br>
             Nama
@@ -28,9 +29,7 @@
             <input type="email" name="email" class="form-control" v-model="email" placeholder="Masukkan email"
             autocomplete="off">
             <br>
-            Password
-            <input type="password" name="password" class="form-control" v-model="password" placeholder="Masukkan password"
-            autocomplete="off">
+            <input type="hidden" name="password" class="form-control" v-model="password">
             <br>
 
             <!-- Button -->
@@ -38,7 +37,7 @@
                 <i class='bx bxs-chevron-left button-icon'></i>
                 <span class="button-text">Back</span>
             </router-link>
-            <button class="button-add" @click="addsiswa()">
+            <button class="button-add" @click="editsiswa()">
                 <i class='bx bxs-file-plus button-icon'></i>
                 <span class="button-text">Add</span>
             </button>
@@ -59,7 +58,7 @@
 
 <script>
     export default {
-        name: "TambahSiswa",
+        name: "EditSiswa",
         data() {
             return {
                 nisn:'',
@@ -86,12 +85,32 @@
                 }
 
                 this.axios.get("http://localhost/lat_spp/public/api/kelas", option).then((result) => {
-                    console.log(result)
+                    // console.log(result)
                     this.listkelas = result.data
                 })
             },
 
-            addsiswa:function() {
+            getdetail(nisn) {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/getsiswa/" + nisn, option).then((result) => {
+                    // console.log(result)
+                    this.nisn       = result.data.nisn,
+                    this.nis        = result.data.nis,
+                    this.nama       = result.data.nama,
+                    this.kelas      = result.data.id_kelas
+                    this.alamat     = result.data.alamat
+                    this.no_telp    = result.data.no_telp
+                    this.email      = result.data.email
+                    this.password   = result.data.password
+                })
+            },
+
+            editsiswa:function() {
                 var option = {
                     headers:{
                         'Authorization':'bearer ' + localStorage.getItem("token")
@@ -109,8 +128,8 @@
                     password:this.password
                 }
 
-                this.axios.post("http://localhost/lat_spp/public/api/insert_siswa", datasiswa, option).then((result) => {
-                    // console.log(result)
+                this.axios.put("http://localhost/lat_spp/public/api/update_siswa/" + this.nisn, datasiswa, option).then((result) => {
+                    console.log(result)
                     if(result.data.status == true) {
                         this.error = false
                         this.message = result.data.message
@@ -131,6 +150,7 @@
 
         mounted() {
             this.getkelas()
+            this.getdetail(this.$route.params.nisn)
         }
     }
 </script>
