@@ -34,7 +34,8 @@ class UserController extends Controller
             'nama_petugas'  => 'required|string|max:255',
             'email'         => 'required|string|email|max:255|unique:users',
             'password'      => 'required|string|min:6|confirmed',
-            'level'         => 'required'
+            'level'         => 'required',
+            'username'      => 'required'
         ]);
 
         if($validator->fails()) {
@@ -57,6 +58,7 @@ class UserController extends Controller
             'password'      => $petugas->password,
             'level'         => $request->get('level'),
             'id_petugas'    => DB::getPdo()->lastInsertId(),
+            'username'      => $request->username
         ]);
 
         //PETUGAS
