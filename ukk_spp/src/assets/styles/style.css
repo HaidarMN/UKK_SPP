@@ -246,6 +246,19 @@ input[type=number] {
     left: 240px;
 }
 
+/* Search */
+input[name=search] {
+    background-image: url('search.svg');
+    background-position: 7px 7px;
+    background-repeat: no-repeat;
+    padding: 5px 20px 5px 40px;
+    color: #696969;
+}
+
+input[name=search]:focus {
+    color: #696969;
+}
+
 /* Table */
 .content-table {
     border-collapse: collapse;
@@ -291,17 +304,13 @@ input[type=number] {
     padding: 25px;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 6fr 1.15fr;
+    grid-template-columns: 7fr 1fr;
     grid-gap: 30px;
-    grid-template-areas: "left center right";
+    grid-template-areas: "left right";
 }
 
 .grid-left {
     grid-area: left;
-}
-
-.grid-center {
-    grid-area: center;
 }
 
 .grid-right {
@@ -339,6 +348,7 @@ input[type=number] {
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+    float: right;
 }
 
 .button-add:hover {
@@ -375,7 +385,6 @@ input[type=number] {
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    float: right;
 }
 
 .button-back:hover {
