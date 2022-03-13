@@ -13,6 +13,7 @@ import EditKelas from './components/EditKelas.vue'
 // Siswa
 import Siswa from './components/Siswa.vue'
 import TambahSiswa from './components/TambahSiswa.vue'
+import EditSiswa from './components/EditSiswa.vue'
 // Petugas
 import Petugas from './components/Petugas.vue'
 import TambahPetugas from './components/TambahPetugas.vue'
@@ -37,6 +38,7 @@ const router = createRouter({
         // Siswa
         {path: '/siswa', name: "Siswa", component: Siswa},
         {path: '/siswa/tambahsiswa', name: "TambahSiswa", component: TambahSiswa},
+        {path: '/siswa/editsiswa/:nisn', name: "EditSiswa", component: EditSiswa},
         // Petugas
         {path: '/petugas', name: "Petugas", component: Petugas},
         {path: '/petugas/tambahpetugas', name: "TambahPetugas", component: TambahPetugas},
