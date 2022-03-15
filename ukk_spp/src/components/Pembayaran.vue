@@ -34,10 +34,6 @@
                     <td>{{pem.bulan_spp}}</td>
                     <td>{{pem.tahun_spp}}</td>
                     <td>
-                        <router-link class="button-edit" :to="{path: '/pembayaran/editpembayaran/' + pem.id_pembayaran}">
-                            <i class='bx bxs-edit-alt button-icon'></i>
-                        </router-link>
-                        &nbsp;
                         <a class="button-del" @click="delpembayaran(pem.id_pembayaran)">
                             <i class='bx bxs-trash button-icon'></i>
                         </a>
