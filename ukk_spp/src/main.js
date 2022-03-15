@@ -20,6 +20,7 @@ import TambahPetugas from './components/TambahPetugas.vue'
 // SPP
 import Spp from './components/Spp.vue'
 import TambahSpp from './components/TambahSpp.vue'
+import EditSpp from './components/EditSpp.vue'
 // Pembayaran
 import Pembayaran from './components/Pembayaran.vue'
 import TambahPembayaran from './components/TambahPembayaran.vue'
@@ -45,6 +46,7 @@ const router = createRouter({
         // Spp
         {path: '/spp', name: "Spp", component: Spp},
         {path: '/spp/tambahspp', name: "TambahSpp", component: TambahSpp},        
+        {path: '/spp/editspp/:id_spp', name: "EditSpp", component: EditSpp},        
         // Pembayaran
         {path: '/pembayaran', name: "Pembayaran", component: Pembayaran},
         {path: '/pembayaran/tambahpembayaran', name: "TambahPembayaran", component: TambahPembayaran},
