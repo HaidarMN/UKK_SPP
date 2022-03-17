@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use DB;
+use Auth;
  
 class UserController extends Controller
 {
@@ -24,7 +25,9 @@ class UserController extends Controller
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-        return response()->json(compact('token'));
+        $level = Auth::user()->level;
+        $username = Auth::user()->username;
+        return response()->json(compact('token', 'level', 'username'));
     }
 
     //POST
