@@ -61,6 +61,13 @@
     </div>
   </div>
   <router-view @authenticated = "setAuthenticated"></router-view>
+  <div class="footer" v-if="authenticated">
+    <p>
+      Copyright &copy;
+      <a href="https://github.com/HaidarMN" target="_blank">HaidarMN</a>
+      2022
+    </p>
+  </div>
 </template>
 
 <script>
@@ -94,5 +101,5 @@
 </script>
 
 <style>
-  @import './assets/styles/style.css';
+  @import './assets/style.css';
 </style>

@@ -7,23 +7,23 @@ import {createWebHistory, createRouter} from 'vue-router'
 // Dashboard
 import Dashboard from './components/Dashboard.vue'
 // Kelas
-import Kelas from './components/Kelas.vue'
-import TambahKelas from './components/TambahKelas.vue'
-import EditKelas from './components/EditKelas.vue'
+import Kelas from './components/Kelas/Kelas.vue'
+import TambahKelas from './components/Kelas/TambahKelas.vue'
+import EditKelas from './components/Kelas/EditKelas.vue'
 // Siswa
-import Siswa from './components/Siswa.vue'
-import TambahSiswa from './components/TambahSiswa.vue'
-import EditSiswa from './components/EditSiswa.vue'
+import Siswa from './components/Siswa/Siswa.vue'
+import TambahSiswa from './components/Siswa/TambahSiswa.vue'
+import EditSiswa from './components/Siswa/EditSiswa.vue'
 // Petugas
-import Petugas from './components/Petugas.vue'
-import TambahPetugas from './components/TambahPetugas.vue'
+import Petugas from './components/Petugas/Petugas.vue'
+import TambahPetugas from './components/Petugas/TambahPetugas.vue'
 // SPP
-import Spp from './components/Spp.vue'
-import TambahSpp from './components/TambahSpp.vue'
-import EditSpp from './components/EditSpp.vue'
+import Spp from './components/Spp/Spp.vue'
+import TambahSpp from './components/Spp/TambahSpp.vue'
+import EditSpp from './components/Spp/EditSpp.vue'
 // Pembayaran
-import Pembayaran from './components/Pembayaran.vue'
-import TambahPembayaran from './components/TambahPembayaran.vue'
+import Pembayaran from './components/Pembayaran/Pembayaran.vue'
+import TambahPembayaran from './components/Pembayaran/TambahPembayaran.vue'
 // Login
 import Login from './components/Login.vue'
 
