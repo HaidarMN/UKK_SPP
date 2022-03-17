@@ -19,7 +19,7 @@
                     <th>ID</th>
                     <th>Angkatan</th>
                     <th>Tahun</th>
-                    <th>Noiminal</th>
+                    <th>Nominal</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
