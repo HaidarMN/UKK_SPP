@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import axios from 'axios'
+import store from './store.js'
 
 import {createWebHistory, createRouter} from 'vue-router'
 
@@ -49,7 +50,7 @@ const router = createRouter({
         {path: '/spp/editspp/:id_spp', name: "EditSpp", component: EditSpp},        
         // Pembayaran
         {path: '/pembayaran', name: "Pembayaran", component: Pembayaran},
-        {path: '/pembayaran/tambahpembayaran', name: "TambahPembayaran", component: TambahPembayaran},
+        {path: '/pembayaran/bayar', name: "TambahPembayaran", component: TambahPembayaran},
         // Login
         {path: '/login', name: "Login", component: Login},
     ],
@@ -58,6 +59,7 @@ const router = createRouter({
 
 const app = createApp(App)
 app.use(router)
+app.use(store)
 app.config.globalProperties.axios  = axios
 app.mount("#app")
 

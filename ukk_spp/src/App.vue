@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" v-if="authenticated">
+  <div class="sidebar" v-if="authenticated" @level = "setLevel" @username = "setUsername">
     <div class="logo-content">
       <div class="logo">
         <i class='bx bxl-vuejs'></i>
@@ -9,36 +9,42 @@
     </div>
     <ul class="nav-list">
       <li>
-        <router-link to="/">
-          <i class='bx bxs-grid-alt' ></i>
-          <span class="links-name">Dashboard</span>
+        <router-link to="/pembayaran/bayar" class="bayar">
+          <i class='bx bx-money'></i>
+          <span class="links-name">Bayar</span>
         </router-link>
       </li>
       <li>
+        <router-link to="/">
+          <i class='bx bxs-grid-alt'></i>
+          <span class="links-name">Dashboard</span>
+        </router-link>
+      </li>
+      <li v-if="level == 'admin'">
         <router-link to="/kelas">
           <i class='bx bxs-home'></i>
           <span class="links-name">Kelas</span>
         </router-link>
       </li>
-      <li>
+      <li v-if="level == 'admin'">
         <router-link to="/siswa">
           <i class='bx bxs-face'></i>
           <span class="links-name">Siswa</span>
         </router-link>
       </li>
-      <li>
+      <li v-if="level == 'admin'">
         <router-link to="/petugas">
           <i class='bx bxs-user'></i>
           <span class="links-name">Petugas</span>
         </router-link>
       </li>
-      <li>
+      <li v-if="level == 'admin'">
         <router-link to="/spp">
           <i class='bx bx-dollar'></i>
           <span class="links-name">SPP</span>
         </router-link>
       </li>
-      <li>
+      <li v-if="level == 'admin' || 'petugas'">
         <router-link to="/pembayaran">
           <i class='bx bxs-wallet-alt'></i>
           <span class="links-name">Pembayaran</span>
@@ -50,8 +56,8 @@
         <div class="profile-details">
           <i class='bx bxs-user'></i>
           <div class="name-job">
-            <div class="name">Anonymous</div>
-            <div class="job">admin</div>
+            <div class="name">{{this.$store.state.user.username}}</div>
+            <div class="job">{{this.$store.state.user.level}}</div>
           </div>
         </div>
         <router-link to="/login" @click="logout()">
@@ -61,11 +67,11 @@
     </div>
   </div>
   <router-view @authenticated = "setAuthenticated"></router-view>
+  <br>
   <div class="footer" v-if="authenticated">
     <p>
-      Copyright &copy;
+      Copyright &copy; 2022
       <a href="https://github.com/HaidarMN" target="_blank">HaidarMN</a>
-      2022
     </p>
   </div>
 </template>
@@ -76,7 +82,9 @@
     data() {
       return {
         // JSON.parse merubah data ke Boolean
-        authenticated:JSON.parse(localStorage.getItem('status'))
+        authenticated:JSON.parse(localStorage.getItem('status')),
+        level:localStorage.getItem('level'),
+        username:localStorage.getItem('username')
       }
     },
 
@@ -85,10 +93,20 @@
         this.authenticated = status
       },
 
+      setLevel(status) {
+        this.level = status
+      },
+
+      setUsername(status) {
+        this.username = status
+      },
+
       logout() {
         this.authenticated = false
         localStorage.removeItem('status')
         localStorage.removeItem('token')
+        localStorage.removeItem('level')
+        localStorage.removeItem('username')
       }
     },
 
