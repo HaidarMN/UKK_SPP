@@ -93,6 +93,24 @@
                         this.style_msg = "alert alert-danger"
                     }
                 })
+
+                this.axios.post("http://localhost/lat_spp/public/api/bayars", datapembayaran, option).then((result) => {
+                    // console.log(result)
+                    if(result.data.status == true) {
+                        this.error = false
+                        this.message = result.data.message
+                        this.style_msg = "alert alert-success"
+
+                        // Pergi ke halaman sebelumnya setelah 2000ms
+                        setTimeout(() => {
+                            this.$router.push('/pembayaran')
+                        }, 2000);
+                    } else {
+                        this.error = true
+                        this.message = result.data.message
+                        this.style_msg = "alert alert-danger"
+                    }
+                })
             }
         }
     }
