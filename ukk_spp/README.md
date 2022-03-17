@@ -1,5 +1,10 @@
 # ukk_spp3
 
+## Install
+- Axios
+- Vue-Router
+- Vuex
+
 ## Project setup
 ```
 npm install
