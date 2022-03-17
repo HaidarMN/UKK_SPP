@@ -107,6 +107,23 @@
 
 <script>
     export default {
-        name: "Dashboard"
+        name: "Dashboard",
+        data() {
+            return {
+                totalkelas:'',
+            }
+        },
+
+        methods: {
+            totkel:function() {
+                this.axios.get("http://localhost/lat_spp/public/api/totalkelas").then((result) => {
+                    this.totalkelas = result.data
+                })
+            }
+        },
+
+        mounted() {
+            this.totkel()
+        }
     }
 </script>
