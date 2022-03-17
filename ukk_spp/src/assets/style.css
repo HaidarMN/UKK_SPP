@@ -50,7 +50,7 @@ input[type=number] {
 }
 
 .sidebar .logo-content .logo {
-    color: white;
+    color: #E4E3E3;
     display: flex;
     height: 50px;
     width: 100%;
@@ -78,7 +78,7 @@ input[type=number] {
 
 .sidebar #btn {
     position: absolute;
-    color: white;
+    color: #E4E3E3;
     top: 6px;
     left: 50%;
     font-size: 20px;
@@ -111,8 +111,9 @@ input[type=number] {
     line-height: 50px;
 }
 
+
 .sidebar ul li a {
-    color: white;
+    color: #E4E3E3;
     display: flex;
     margin: 3px 0;
     align-items: center;
@@ -123,10 +124,20 @@ input[type=number] {
     white-space: nowrap;
 }
 
+.sidebar ul li .bayar {
+    background: #3B6978;
+}
+
+.sidebar ul li .bayar:hover {
+    color: #E4E3E3;
+    background: #3B6978;
+}
+
+.sidebar ul li a.router-link-exact-active,
 .sidebar ul li a.router-link-active,
 .sidebar ul li a:hover {
     color: #204051;
-    background: white;
+    background: #E4E3E3;
 }
 
 .sidebar ul li i {
@@ -151,7 +162,7 @@ input[type=number] {
 /* Sidebar Footer */
 .sidebar .profile-content {
     position: absolute;
-    color: white;
+    color: #E4E3E3;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -197,7 +208,7 @@ input[type=number] {
 
 .profile a {
     text-decoration: none;
-    color: white;
+    color: #E4E3E3;
 }
 
 .profile #log-out {
@@ -210,16 +221,18 @@ input[type=number] {
     font-size: 20px;
     border-radius: 12px;
     text-align: center;
+    background: #84A9AC;
 }
 
 .sidebar.active .profile #log-out {
     left: 88%;
+    background: none;
 }
 
 /* Content */
 .content {
     position: absolute;
-    height: 100%;
+    height: calc(100% - 60px);
     width: calc(100% - 78px);
     left: 78px;
     background: #E4E3E3;
@@ -286,11 +299,13 @@ input[name=search] {
     background-image: url('search.svg');
     background-position: 7px 7px;
     background-repeat: no-repeat;
+    background-color: #f1f1f1;
     padding: 5px 20px 5px 40px;
     color: #204051;
 }
 
 input[name=search]:focus {
+    background-color: #f1f1f1;
     color: #204051;
 }
 
@@ -319,7 +334,7 @@ input[name=search]:focus {
 
 .content-table thead tr {
     background-color: #204051;
-    color: white;
+    color: #E4E3E3;
     text-align: center;
     font-weight: bold;
     font-size: 18px;
@@ -418,7 +433,7 @@ input[name=search]:focus {
     display: flex;
     min-height: 80px;
     padding: 10px;
-    color: white;
+    color: #E4E3E3;
     box-shadow: 0 0 13px rgba(0, 0, 0, 0.15);
 }
 
@@ -537,7 +552,7 @@ input[name=search]:focus {
     display: inline-flex;
     align-items: center;
     padding: 0 24px;
-    color: white;
+    color: #E4E3E3;
     height: 100%;
 }
 
