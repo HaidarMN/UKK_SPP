@@ -3,13 +3,9 @@
         <h1 >DATA PEMBAYARAN</h1>
 
         <!-- Add | Search | Button -->
-        <div class="grid">
-            <input type="text" name="search" v-model="search" class="form-control grid-left" placeholder="Search..." 
+        <div style="padding: 25px; padding-bottom: 0;">
+            <input type="text" name="search" v-model="search" class="form-control" placeholder="Search..." 
             @keyup.enter="cari()" autocomplete="off">
-            <router-link class="button-add grid-right" to="/pembayaran/bayar">
-                <i class='bx bxs-file-plus button-icon'></i>
-                <span class="button-text">Add</span>
-            </router-link>
         </div>
 
         <!-- Table -->
