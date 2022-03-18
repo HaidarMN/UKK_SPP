@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pembayaran;
 use JWTAuth;
+use Auth;
 use Validator;
 use App\Tunggakan;
 use config;
@@ -66,7 +67,7 @@ class TransaksiController extends Controller
     }
 
     //KURANG BAYAR
-    public function kurang($id) {
+    public function kurang($nisn) {
         $gethistori = tunggakan::select(
             'siswa.nisn', 'siswa.nama', 'kelas.nama_kelas', 'kelas.jurusan', 'nominal'
         )->join(
@@ -76,7 +77,7 @@ class TransaksiController extends Controller
         )->join(
             'spp', 'spp.angkatan', '=', 'kelas.angkatan'
         )->where(
-            'tunggakan.nisn', $id
+            'tunggakan.nisn', $nisn
         )->where(
             'status', 'belum lunas'
         )->get();

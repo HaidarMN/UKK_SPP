@@ -98,7 +98,8 @@ class KelasController extends Controller
 
     //TOTAL
     public function total() {
-        $count = DB::table('kelas')->count();
+        $kelas = DB::table('kelas')->count();
+        return Response()->json($kelas);
     }
 
     //JWT

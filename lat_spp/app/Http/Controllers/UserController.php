@@ -115,6 +115,11 @@ class UserController extends Controller
         return Response()->json($detail);
     }
     
+    //TOTAL
+    public function total() {
+        $user = DB::table('users')->count();
+        return Response()->json($user);
+    }
 
     public function getAuthenticatedUser()
     {
