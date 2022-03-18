@@ -40,6 +40,7 @@
         data() {
             return {
                 pembayaran:[],
+                petugas:[],
                 search:''
             }
         },
@@ -81,11 +82,25 @@
                     // console.log(result)
                     this.pembayaran = result.data
                 })
+            },
+
+            getpetugas:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/user", option).then((result) => {
+                    console.log(result)
+                    this.petugas = result.data
+                })
             }
         },
 
         mounted() {
             this.getpembayaran()
+            this.getpetugas()
         }
     }
 </script>
