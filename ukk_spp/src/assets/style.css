@@ -267,6 +267,22 @@ input[type=number] {
     left: 240px;
 }
 
+/* Chart */
+.db-chart {
+    margin: 25px;
+    margin-top: 15px;
+    height: 100%;
+    font-size: 0.9em;
+    border-radius: 5px 5px 0 0;
+    background: #204051;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.db-chart h1 {
+    color: #E4E3E3;
+}
+
 /* Footer */
 .footer {
     position: fixed;
@@ -371,7 +387,7 @@ input[name=search]:focus {
 }
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #204051;
+    border-bottom: 3px solid #204051;
 }
 
 /* Grid */
@@ -595,6 +611,7 @@ input[name=search]:focus {
     transform: translate(-50%, -50%);
     background: #E4E3E3;
     text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 .login h1 {
