@@ -22,7 +22,7 @@ Route::post('login', 'UserController@login');
 Route::post('login_siswa', 'LogSisController@login');
 Route::post('register_siswa', 'LogSisController@register');
 // Route::post('register', 'UserController@register');
-Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
+// Route::get('/login/check', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
 
 // Route::get('kelas', 'KelasController@kelas');
 // Route::get('/kelas/{id}', 'KelasController@cari_data');
@@ -36,6 +36,7 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
 
     //JWT
     Route::post('register', 'UserController@register');
+    Route::get('/login/check', 'UserController@getAuthenticatedUser');
     
     //KELAS
     Route::get('kelas', 'KelasController@kelas');
@@ -91,6 +92,8 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
 
 //PETUGAS
 Route::group(['middleware'=>['jwt.verify:petugas']], function() {
+    Route::get('/login/checks', 'UserController@getAuthenticatedUser');
+
     Route::get('pembayarans', 'PembayaranController@pembayaran');
 
     Route::post('bayars', 'TransaksiController@bayar');
