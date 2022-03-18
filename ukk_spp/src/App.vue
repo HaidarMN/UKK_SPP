@@ -8,13 +8,14 @@
       <i class='bx bx-menu' id="btn"></i>
     </div>
     <ul class="nav-list">
-      <li>
-        <router-link to="/pembayaran/bayar" class="bayar">
+      <li v-if="level == 'admin' || 'petugas'">
+        <router-link to="/bayar" class="bayar disabled">
           <i class='bx bx-money'></i>
           <span class="links-name">Bayar</span>
         </router-link>
       </li>
-      <li>
+      <hr>
+      <li v-if="level == 'admin'">
         <router-link to="/">
           <i class='bx bxs-grid-alt'></i>
           <span class="links-name">Dashboard</span>
@@ -71,7 +72,9 @@
   <div class="footer" v-if="authenticated">
     <p>
       Copyright &copy; 2022
-      <a href="https://github.com/HaidarMN" target="_blank">HaidarMN</a>
+      <a href="https://haidarmn.github.io" target="_blank">HaidarMN</a>
+      | in project
+      <a href="https://github.com/HaidarMN/UKK_SPP" target="_blank">UKK_SPP</a>
     </p>
   </div>
 </template>

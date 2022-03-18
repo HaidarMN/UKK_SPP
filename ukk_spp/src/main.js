@@ -50,7 +50,7 @@ const router = createRouter({
         {path: '/spp/editspp/:id_spp', name: "EditSpp", component: EditSpp},        
         // Pembayaran
         {path: '/pembayaran', name: "Pembayaran", component: Pembayaran},
-        {path: '/pembayaran/bayar', name: "TambahPembayaran", component: TambahPembayaran},
+        {path: '/bayar', name: "TambahPembayaran", component: TambahPembayaran},
         // Login
         {path: '/login', name: "Login", component: Login},
     ],
