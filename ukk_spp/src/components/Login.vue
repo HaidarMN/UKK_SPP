@@ -40,12 +40,18 @@
                     localStorage.setItem('status', true)
                     localStorage.setItem('level', result.data.level)
                     localStorage.setItem('username', result.data.username)
+
                     this.$emit("authenticated", true)
                     this.$emit("level", result.data.level)
                     this.$emit("username", result.data.username)
                     this.$store.dispatch('setUsername', result.data.username)
                     this.$store.dispatch('setLevel', result.data.level)
-                    this.$router.replace({name: "Dashboard"})
+
+                    if (result.data.level == 'admin') {
+                        this.$router.replace({name: "Dashboard"});
+                    } else {
+                        this.$router.replace({name: "Pembayaran"})
+                    }
                 }).catch(error => {
                     console.log(error)
                     // alert('email atau password salah')

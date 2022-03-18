@@ -88,18 +88,9 @@
 
             <!-- ?? -->
             <div class="content-db-2">
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>??</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>??</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="db-chart">
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -151,7 +142,7 @@
                 }
 
                 this.axios.get("http://localhost/lat_spp/public/api/totaluser", option).then((result) => {
-                    console.log(result)
+                    // console.log(result)
                     this.totalpetugas = result.data
                 })
             }
