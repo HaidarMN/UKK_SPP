@@ -31,12 +31,15 @@ Route::post('register_siswa', 'LogSisController@register');
 // Route::delete("/delete_kelas/{id}", "KelasController@destroy");
 // Route::get('/getkelas/{id}', 'KelasController@getdetail');
 
+Route::group(['middleware'=>['jwt.verify:admin,petugas']], function() {
+    Route::get('/login/check', 'UserController@getAuthenticatedUser');
+});
+
 //ADMIN
 Route::group(['middleware'=>['jwt.verify:admin']], function() {
 
     //JWT
     Route::post('register', 'UserController@register');
-    Route::get('/login/check', 'UserController@getAuthenticatedUser');
     
     //KELAS
     Route::get('kelas', 'KelasController@kelas');
@@ -92,8 +95,6 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
 
 //PETUGAS
 Route::group(['middleware'=>['jwt.verify:petugas']], function() {
-    Route::get('/login/checks', 'UserController@getAuthenticatedUser');
-
     Route::get('pembayarans', 'PembayaranController@pembayaran');
 
     Route::post('bayars', 'TransaksiController@bayar');
