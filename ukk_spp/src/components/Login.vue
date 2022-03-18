@@ -1,13 +1,18 @@
 <template>
-    <div class="container">
+    <div class="login">
         <h1>LOGIN</h1>
-        E-mail
-        <input type="email" name="email" v-model="email" class="form-control" @keyup.enter="login()" autocomplete="off">
         <br>
-        Password
-        <input type="password" name="password" v-model="password" class="form-control" @keyup.enter="login()" autocomplete="off">
+        <input type="email" name="email" v-model="email" @keyup.enter="login()" placeholder="E-mail"
+        autocomplete="off">
         <br>
-        <button class="btn btn-success" @click="login()">Login</button>
+        <input type="password" name="password" v-model="password" @keyup.enter="login()" placeholder="Password"
+        autocomplete="off">
+
+        <div>
+            <p>{{msg}}</p>
+        </div>
+
+        <button type="submit" class="button-log" @click="login()">Login</button>
     </div>
 </template>
 
@@ -17,7 +22,8 @@
         data() {
             return {
                 email:'',
-                password:''
+                password:'',
+                msg:''
             }
         },
 
@@ -32,11 +38,18 @@
                     // console.log(result)
                     localStorage.setItem('token', result.data.token)
                     localStorage.setItem('status', true)
+                    localStorage.setItem('level', result.data.level)
+                    localStorage.setItem('username', result.data.username)
                     this.$emit("authenticated", true)
+                    this.$emit("level", result.data.level)
+                    this.$emit("username", result.data.username)
+                    this.$store.dispatch('setUsername', result.data.username)
+                    this.$store.dispatch('setLevel', result.data.level)
                     this.$router.replace({name: "Dashboard"})
                 }).catch(error => {
                     console.log(error)
-                    alert('email atau password salah')
+                    // alert('email atau password salah')
+                    this.msg = "email atau password salah"
                 })
             }
         },
