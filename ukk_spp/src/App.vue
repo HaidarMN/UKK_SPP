@@ -91,6 +91,22 @@
       }
     },
 
+    created() {
+      this.axios.get("http://localhost/lat_spp/public/api/login/check", {
+        headers: {'Authorization':'bearer ' + localStorage.getItem("token")}
+      }).then((result) => {
+        console.log(result)
+        if(!(result.data.success)) {
+          localStorage.removeItem('status')
+          localStorage.removeItem('token')
+          localStorage.removeItem('level')
+          localStorage.removeItem('username')
+          alert("Sesi anda sudah berakhir\n\nSilahkan login kembali")
+          this.$router.push('/login')
+        }
+      })
+    },
+
     methods: {
       setAuthenticated(status) {
         this.authenticated = status
