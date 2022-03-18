@@ -11,6 +11,7 @@
 
 body {
     position: relative;
+    background-image: linear-gradient(to bottom right, #204051, #3B6978);
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
@@ -101,6 +102,12 @@ input[type=number] {
     padding-left: 0;
 }
 
+.sidebar ul hr {
+    margin-left: 10px;
+    align-items: center;
+    border-top: 3px solid #E4E3E3;
+    border-radius: 5px;
+}
 
 .sidebar ul li {
     position: relative;
@@ -128,12 +135,6 @@ input[type=number] {
     background: #3B6978;
 }
 
-.sidebar ul li .bayar:hover {
-    color: #E4E3E3;
-    background: #3B6978;
-}
-
-.sidebar ul li a.router-link-exact-active,
 .sidebar ul li a.router-link-active,
 .sidebar ul li a:hover {
     color: #204051;
@@ -241,6 +242,7 @@ input[type=number] {
 }
 
 .content h1 {
+    font-size: 50px;
     font-weight: bold;
     color: #204051;
     margin: 25px;
@@ -375,6 +377,7 @@ input[name=search]:focus {
 /* Grid */
 .grid {
     padding: 25px;
+    padding-bottom: 0;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 7fr 1fr;
@@ -547,6 +550,26 @@ input[name=search]:focus {
     background: #204051;
 }
 
+.button-log {
+    height: 40px;
+    width: 100px;
+    padding: 0;
+    background: #3B6978;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    color: #E4E3E3;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;  
+}
+
+.button-log:hover {
+    background: #204051;
+}
+
 .button-text,
 .button-icon {
     display: inline-flex;
@@ -559,4 +582,60 @@ input[name=search]:focus {
 .button-icon {
     font-size: 1.5em;
     background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Login */
+.login {
+    position: absolute;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    border-radius: 25px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: #E4E3E3;
+    text-align: center;
+}
+
+.login h1 {
+    color: #204051;
+    font-weight: bold;
+}
+
+.login input[type = "email"],
+.login input[type = "password"] {
+    display: block;
+    margin: auto;
+    padding: 5px 20px 5px 40px;
+    width: 100%;
+    background: none;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #84A9AC;
+    border-radius: 0;
+    outline: 0;
+    color: #204051;
+    transition: all 0.4s ease;
+}
+
+.login input[type = "email"] {
+    background-image: url('email.svg');
+    background-position: 7px 7px;
+    background-repeat: no-repeat;
+}
+
+.login input[type = "password"] {
+    background-image: url('pw.svg');
+    background-position: 7px 7px;
+    background-repeat: no-repeat;
+}
+
+.login input[type = "email"]:focus,
+.login input[type = "password"]:focus {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #3B6978;
+    outline: 0;
+    box-shadow: none;
+    color: #204051;
 }
