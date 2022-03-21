@@ -27,6 +27,7 @@ import Pembayaran from './components/Pembayaran/Pembayaran.vue'
 import TambahPembayaran from './components/Pembayaran/TambahPembayaran.vue'
 // Login
 import Login from './components/Login.vue'
+import LoginSiswa from './components/LoginSiswa.vue'
 
 const router = createRouter({
     history : createWebHistory(),
@@ -53,6 +54,7 @@ const router = createRouter({
         {path: '/bayar', name: "TambahPembayaran", component: TambahPembayaran},
         // Login
         {path: '/login', name: "Login", component: Login},
+        {path: '/loginSiswa', name: "LoginSiswa", component: LoginSiswa},
     ],
     base : '/'
 })
