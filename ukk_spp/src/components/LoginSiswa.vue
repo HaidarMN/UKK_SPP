@@ -1,6 +1,6 @@
 <template>
     <div class="login">
-        <h1>LOGIN</h1>
+        <h1>LOGIN SISWA</h1>
         <br>
         <input type="email" name="email" v-model="email" @keyup.enter="login()" placeholder="E-mail"
         autocomplete="off">
@@ -18,14 +18,14 @@
         <!-- Login for siswa -->
         <p>
             Login untuk
-            <router-link to="/loginSiswa">Siswa</router-link>
+            <router-link to="/login">Petugas</router-link>
         </p>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Login",
+        name: "LoginSiswa",
         data() {
             return {
                 email:'',
@@ -41,7 +41,7 @@
                     password:this.password
                 }
 
-                this.axios.post("http://localhost/lat_spp/public/api/login", datalogin).then((result) => {
+                this.axios.post("http://localhost/lat_spp/public/api/login_siswa", datalogin).then((result) => {
                     // console.log(result)
                     localStorage.setItem('token', result.data.token)
                     localStorage.setItem('status', true)
