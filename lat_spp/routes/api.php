@@ -101,6 +101,6 @@ Route::group(['middleware'=>['jwt.verify:petugas']], function() {
 });
 
 //SISWA
-Route::group(['middleware'=>['jwt.verify:siswa']], function() {
+Route::group(['middleware'=>['jwt.verifysiswa']], function() {
     Route::get('/kurang/{id}', 'TransaksiController@kurang');
 });
