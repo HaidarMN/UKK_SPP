@@ -16,7 +16,7 @@ class JwtSiswaMiddleware extends BaseMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$roles)
     {
         try {
             $siswa = JWTAuth::parseToken()->authenticate();
@@ -29,10 +29,6 @@ class JwtSiswaMiddleware extends BaseMiddleware
                 return response()->json(['status' => 'Authorization Token not found']);
             }
         }
-
-        if ($siswa && in_array($siswa->level)) {
-            return $next($request);
-        }
-        return response()->json(['status' => 'You are unauthorize user']);
+        return $next($request);
     }
 }
