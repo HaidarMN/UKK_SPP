@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+        'jwt.verifysiswa' => \App\Http\Middleware\JwtSiswaMiddleware::class,
 
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
