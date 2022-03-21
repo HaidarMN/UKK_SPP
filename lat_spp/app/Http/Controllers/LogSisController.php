@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
-// use Auth;
+use Auth;
 use Config;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LogSisController extends Controller
 {
