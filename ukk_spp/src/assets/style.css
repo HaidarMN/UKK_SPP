@@ -656,3 +656,30 @@ input[name=search]:focus {
     box-shadow: none;
     color: #204051;
 }
+
+.login button {
+    margin: 10px 0 5px;
+}
+
+.login p {
+    margin: 5px 0 0;
+    color: #204051;
+}
+
+.login p a{
+    color: #204051;
+    font-weight: bold;
+}
+
+/* Error Login Alert */
+.erlog {
+    width: 100%;
+    border-radius: 5px;
+    margin: 15px 0 5px;
+    background: red;
+}
+
+.erlog p {
+    margin: 0;
+    color: white;
+}
