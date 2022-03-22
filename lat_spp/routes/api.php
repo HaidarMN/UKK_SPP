@@ -80,6 +80,7 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::delete("/delete_pembayaran/{id}", "PembayaranController@destroy");
     Route::get('/pembayaran/{id}', 'PembayaranController@cari_data');
     Route::get('/getpembayaran/{id}', 'PembayaranController@getdetail');
+    Route::get('/latest', 'PembayaranController@last');
 
     //Tranksasi
     Route::post('bayar', 'TransaksiController@bayar');
