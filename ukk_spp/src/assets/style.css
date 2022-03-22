@@ -437,6 +437,11 @@ input[name=search]:focus {
     grid-template-areas: "left right";
 }
 
+.grid-db h1 {
+    margin-bottom: 10px;
+    font-size: 45px;
+}
+
 .content-db-1 {
     grid-area: left;
 }
