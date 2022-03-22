@@ -91,6 +91,12 @@ class PembayaranController extends Controller
         return Response()->json($detail);
     }
 
+    //LAST
+    public function last() {
+        $last = DB::table('pembayaran')->latest('id_pembayaran')->take(8)->get();
+        return Response()->json($last);
+    }
+
     public function pembayaranAuth() {
         $data = "Selamat datang " . Auth::user()->name . ", di bagian Pembayaran";
         return response()->json($data, 200);
