@@ -34,61 +34,33 @@
         <div class="grid-db">
             <!-- History Pembayaran -->
             <div class="content-db-1">
-                <table class="content-table">
+                <h1 style="margin-right: 12.5px;">Histori Pembayaran</h1>
+                <table class="content-table" style="margin-right: 12.5px;">
                     <thead>
                         <tr>
-                            <th>Histori Pembayaran</th>
+                            <th>Petugas</th>
+                            <th>Siswa</th>
+                            <th>Tanggal Bayar</th>
+                            <th>Bulan SPP</th>
+                            <th>Tahun SPP</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <h4>Sabtu, 13 Maret 2022</h4>
-                                <div>
-                                    <span>Petugas: aditya | Siswa: Arayndra</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Sabtu, 13 Maret 2022</h4>
-                                <div>
-                                    <span>Petugas: eko | Siswa: Haidar Muhammad</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Sabtu, 13 Maret 2022</h4>
-                                <div>
-                                    <span>Petugas: eko | Siswa: Haidar Muhammad</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Senin, 14 Februari 2022</h4>
-                                <div>
-                                    <span>Petugas: eko | Siswa: Asrizal Novi</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Kamis, 20 Januari 2022</h4>
-                                <div>
-                                    <span>Petugas: salsabil | Siswa: Asrizal Novi</span>
-                                </div>
-                            </td>
+                        <tr v-for="last in latest" :key="last.id_pembayaran">
+                            <td>{{last.id_petugas}}</td>
+                            <td>{{last.nisn}}</td>
+                            <td>{{last.tgl_bayar}}</td>
+                            <td>{{last.bulan_spp}}</td>
+                            <td>{{last.tahun_spp}}</td>
                         </tr>
                     </tbody>
                 </table>
-
             </div>
 
             <!-- ?? -->
             <div class="content-db-2">
-                <div class="db-chart">
+                <h1 style="margin-left: 12.5px;">??</h1>
+                <div class="db-chart" style="margin-left: 12.5px;">
                     
                 </div>
             </div>
@@ -103,7 +75,8 @@
             return {
                 totalkelas:'',
                 totalsiswa:'',
-                totalpetugas:''
+                totalpetugas:'',
+                latest:[]
             }
         },
 
@@ -145,6 +118,19 @@
                     // console.log(result)
                     this.totalpetugas = result.data
                 })
+            },
+
+            lastpembayaran:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/latest", option).then((result) => {
+                    // console.log(result)
+                    this.latest = result.data
+                })
             }
         },
 
@@ -152,6 +138,7 @@
             this.totkel()
             this.totsis()
             this.totpet()
+            this.lastpembayaran()
         }
     }
 </script>
