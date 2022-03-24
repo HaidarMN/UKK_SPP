@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Petugas;
+use App\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +31,7 @@ class UserController extends Controller
         return response()->json(compact('token', 'level', 'username'));
     }
 
-    //POST
+    //REG PETUGAS
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -45,7 +46,7 @@ class UserController extends Controller
             $data['status']     = false;
             $data['messagae']   = $validator->errors();
             return Response ()->json($data);
-        }       
+        }    
 
         //Data PETUGAS
         $petugas = Petugas::create([
@@ -80,6 +81,68 @@ class UserController extends Controller
         } else {
             $data['status']     = false;
             $data['message']    = "Gagal menambah petugas";
+        }
+        return $data;
+    }
+
+    //REG SIS
+    public function regsis(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nis'           => 'required',
+            'nama'          => 'required|string|max:255',
+            'id_kelas'      => 'required',
+            'alamat'        => 'required',
+            'no_telp'       => 'required',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'password'      => 'required|string|min:6|confirmed',
+            'level'         => 'required',
+            'username'      => 'required'
+        ]);
+
+        if($validator->fails()) {
+            $data['status']     = false;
+            $data['messagae']   = $validator->errors();
+            return Response ()->json($data);
+        }
+
+        //Data SISWA
+        $siswa = Siswa::create([
+            'nis'       => $request->nis,
+            'nama'      => $request->nama,
+            'id_kelas'  => $request->id_kelas,
+            'alamat'    => $request->alamat,
+            'no_telp'   => $request->no_telp,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+        ]);
+
+        //Data USER
+        $user = User::create([
+            'username'      => $request->get('username'),
+            'email'         => $siswa->email,
+            'password'      => $siswa->password,
+            'name'          => $siswa->nama,
+            'nisn'          => DB::getPdo()->lastInsertId(),
+            'level'         => $request->get('level'),
+        ]);
+
+        //SISWA
+        if($siswa) {
+            $data['status']     = true;
+            $data['message']    = "Berhasil menambah siswa";
+        } else {
+            $data['status']     = false;
+            $data['message']    = "Gagal menambah siswa";
+        }
+
+        //USER
+        if($user) {
+            $data['status']     = true;
+            $data['message']    = "Berhasil menambah siswa";
+        } else {
+            $data['status']     = false;
+            $data['message']    = "Gagal menambah siswa";
         }
         return $data;
     }

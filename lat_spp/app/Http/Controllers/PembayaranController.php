@@ -81,7 +81,7 @@ class PembayaranController extends Controller
 
     //GET 1 DATA
     public function getdetail($id_pembayaran){
-        $detail=Pembayaran::where('id_pe$id_pembayaran', $id_pembayaran)->first();
+        $detail = Pembayaran::where('id_pembayaran', $id_pembayaran)->first();
         return Response()->json($detail);
     }
 
