@@ -7,14 +7,14 @@
       </div>
       <i class='bx bx-menu' id="btn"></i>
     </div>
-    <ul class="nav-list">
-      <li v-if="level == 'admin' || 'petugas'">
-        <router-link to="/bayar" class="bayar disabled">
+    <ul>
+      <li v-if="level != 'siswa'">
+        <router-link to="/bayar" class="bayar">
           <i class='bx bx-money'></i>
           <span class="links-name">Bayar</span>
         </router-link>
       </li>
-      <hr>
+      <hr v-if="level != 'siswa'">
       <li v-if="level == 'admin'">
         <router-link to="/">
           <i class='bx bxs-grid-alt'></i>
@@ -45,7 +45,7 @@
           <span class="links-name">SPP</span>
         </router-link>
       </li>
-      <li v-if="level == 'admin' || 'petugas'">
+      <li v-if="level == 'admin' || 'petugas' || 'siswa'">
         <router-link to="/pembayaran">
           <i class='bx bxs-wallet-alt'></i>
           <span class="links-name">Pembayaran</span>
