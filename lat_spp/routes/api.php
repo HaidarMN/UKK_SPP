@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //JWT
 Route::post('login', 'UserController@login');
 Route::post('login_siswa', 'LogSisController@login');
-Route::post('register_siswa', 'LogSisController@register');
+Route::post('register_siswa', 'UserController@regsis');
 // Route::post('register', 'UserController@register');
 // Route::get('/login/check', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
 
@@ -31,7 +31,7 @@ Route::post('register_siswa', 'LogSisController@register');
 // Route::delete("/delete_kelas/{id}", "KelasController@destroy");
 // Route::get('/getkelas/{id}', 'KelasController@getdetail');
 
-Route::group(['middleware'=>['jwt.verify:admin,petugas']], function() {
+Route::group(['middleware'=>['jwt.verify:admin,petugas,siswa']], function() {
     Route::get('/login/check', 'UserController@getAuthenticatedUser');
 });
 
@@ -102,6 +102,6 @@ Route::group(['middleware'=>['jwt.verify:petugas']], function() {
 });
 
 //SISWA
-Route::group(['middleware'=>['jwt.verifysiswa']], function() {
+Route::group(['middleware'=>['jwt.verify:siswa']], function() {
     Route::get('/kurang/{id}', 'TransaksiController@kurang');
 });
