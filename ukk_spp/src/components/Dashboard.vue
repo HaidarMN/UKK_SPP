@@ -59,9 +59,9 @@
 
             <!-- ?? -->
             <div class="content-db-2">
-                <h1 style="margin-left: 12.5px;">??</h1>
-                <div class="db-chart" style="margin-left: 12.5px;">
-                    
+                <h1 style="margin-left: 12.5px;">Quick Access</h1>
+                <div class="db-qa" style="margin-left: 12.5px;">
+                    <h1>halooo...</h1>
                 </div>
             </div>
         </div>

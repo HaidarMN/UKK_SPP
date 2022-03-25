@@ -14,12 +14,6 @@
         </div>
         
         <button type="submit" class="button-log" @click="login()">Login</button>
-
-        <!-- Login for siswa -->
-        <p>
-            Login untuk
-            <router-link to="/loginSiswa">Siswa</router-link>
-        </p>
     </div>
 </template>
 
