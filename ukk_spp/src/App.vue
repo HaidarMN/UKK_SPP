@@ -93,7 +93,8 @@
         // JSON.parse merubah data ke Boolean
         authenticated:JSON.parse(localStorage.getItem('status')),
         level:localStorage.getItem('level'),
-        username:localStorage.getItem('username')
+        username:localStorage.getItem('username'),
+        nisn:localStorage.getItem('nisn')
       }
     },
 
@@ -107,6 +108,8 @@
           localStorage.removeItem('token')
           localStorage.removeItem('level')
           localStorage.removeItem('username')
+          localStorage.removeItem('nisn')
+
           alert("Sesi anda sudah berakhir\n\nSilahkan login kembali")
           this.$router.push('/login')
         }
@@ -126,12 +129,17 @@
         this.username = status
       },
 
+      setNisn(status) {
+        this.nisn = status
+      },
+
       logout() {
         this.authenticated = false
         localStorage.removeItem('status')
         localStorage.removeItem('token')
         localStorage.removeItem('level')
         localStorage.removeItem('username')
+        localStorage.removeItem('nisn')
       }
     },
 

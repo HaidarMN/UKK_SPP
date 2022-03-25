@@ -5,7 +5,8 @@ import store from './store.js'
 
 import {createWebHistory, createRouter} from 'vue-router'
 
-// import VueHtml2pdf from 'vue-html2pdf'
+// import Vue from 'vue'
+import VueHtml2pdf from 'vue-html2pdf'
 
 // Dashboard
 import Dashboard from './components/Dashboard.vue'
@@ -63,10 +64,12 @@ const router = createRouter({
     base : '/'
 })
 
+// Vue.use(VueHtml2pdf)
+
 const app = createApp(App)
 app.use(router)
 app.use(store)
-// app.use(VueHtml2pdf)
+app.use(VueHtml2pdf)
 app.config.globalProperties.axios  = axios
 app.mount("#app")
 
