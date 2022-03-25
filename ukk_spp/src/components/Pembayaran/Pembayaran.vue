@@ -40,7 +40,7 @@
         data() {
             return {
                 pembayaran:[],
-                search:''
+                search:'',
             }
         },
 
@@ -72,6 +72,8 @@
                     }
                 }
 
+                var data = localStorage.getItem('nisn');
+
                 this.axios.get("http://localhost/lat_spp/public/api/pembayaran", option).then((result) => {
                     // console.log(result)
                     this.pembayaran = result.data
@@ -79,6 +81,11 @@
 
                 this.axios.get("http://localhost/lat_spp/public/api/pembayarans", option).then((result) => {
                     // console.log(result)
+                    this.pembayaran = result.data
+                })
+
+                this.axios.get("http://localhost/lat_spp/public/api/pembayaranss/" + data, option).then((result) => {
+                    console.log(result)
                     this.pembayaran = result.data
                 })
             }
