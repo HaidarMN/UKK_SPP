@@ -30,6 +30,8 @@ Route::post('login', 'UserController@login');
 // Route::delete("/delete_kelas/{id}", "KelasController@destroy");
 // Route::get('/getkelas/{id}', 'KelasController@getdetail');
 
+// Route::get('/pembayaranss/{id}', 'PembayaranController@getnisn');
+
 Route::group(['middleware'=>['jwt.verify:admin,petugas,siswa']], function() {
     Route::get('/login/check', 'UserController@getAuthenticatedUser');
 });
@@ -108,4 +110,5 @@ Route::group(['middleware'=>['jwt.verify:petugas']], function() {
 //SISWA
 Route::group(['middleware'=>['jwt.verify:siswa']], function() {
     Route::get('/kurang/{id}', 'TransaksiController@kurang');
+    Route::get('/pembayaranss/{id}', 'PembayaranController@getnisn');
 });
