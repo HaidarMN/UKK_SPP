@@ -4,7 +4,7 @@
 - axios
 - vue-router
 - vuex
-- vue-html2pdf
+- vue-html2pdf (not sure)
 
 ## Project setup
 ```
