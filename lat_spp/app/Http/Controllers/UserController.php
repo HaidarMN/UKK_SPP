@@ -26,9 +26,10 @@ class UserController extends Controller
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-        $level = Auth::user()->level;
-        $username = Auth::user()->username;
-        return response()->json(compact('token', 'level', 'username'));
+        $level      = Auth::user()->level;
+        $username   = Auth::user()->username;
+        $nisn       = Auth::user()->nisn;
+        return response()->json(compact('token', 'level', 'username', 'nisn'));
     }
 
     //REG PETUGAS

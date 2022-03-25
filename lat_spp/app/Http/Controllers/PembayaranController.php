@@ -80,9 +80,15 @@ class PembayaranController extends Controller
     }
 
     //GET 1 DATA
-    public function getdetail($id_pembayaran){
+    public function getdetail($id_pembayaran) {
         $detail = Pembayaran::where('id_pembayaran', $id_pembayaran)->first();
         return Response()->json($detail);
+    }
+
+    //GET 1 DATA FROM NISN
+    public function getnisn($nisn) {
+        $getnisn = Pembayaran::where('nisn', $nisn)->get();
+        return Response()->json($getnisn);
     }
 
     //SEARCH
