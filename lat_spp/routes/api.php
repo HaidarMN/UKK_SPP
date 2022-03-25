@@ -19,8 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //JWT
 Route::post('login', 'UserController@login');
-Route::post('login_siswa', 'LogSisController@login');
-Route::post('register_siswa', 'UserController@regsis');
+// Route::post('register_siswa', 'UserController@regsis');
 // Route::post('register', 'UserController@register');
 // Route::get('/login/check', 'UserController@getAuthenticatedUser')->middleware('jwt.verify');
 
@@ -35,11 +34,16 @@ Route::group(['middleware'=>['jwt.verify:admin,petugas,siswa']], function() {
     Route::get('/login/check', 'UserController@getAuthenticatedUser');
 });
 
+Route::group(['middleware'=>['jwt.verify:admin,petugas']], function() {
+    Route::post('report', 'TransaksiController@report');
+});
+
 //ADMIN
 Route::group(['middleware'=>['jwt.verify:admin']], function() {
 
     //JWT
     Route::post('register', 'UserController@register');
+    Route::post('register_siswa', 'UserController@regsis');
     
     //KELAS
     Route::get('kelas', 'KelasController@kelas');
