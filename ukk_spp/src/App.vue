@@ -51,6 +51,12 @@
           <span class="links-name">Pembayaran</span>
         </router-link>
       </li>
+      <li v-if="level != 'siswa'">
+        <router-link to="/report">
+          <i class='bx bxs-file-pdf'></i>
+          <span class="links-name">Report</span>
+        </router-link>
+      </li>
     </ul>
     <div class="profile-content">
       <div class="profile">

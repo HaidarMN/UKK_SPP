@@ -5,6 +5,8 @@ import store from './store.js'
 
 import {createWebHistory, createRouter} from 'vue-router'
 
+// import VueHtml2pdf from 'vue-html2pdf'
+
 // Dashboard
 import Dashboard from './components/Dashboard.vue'
 // Kelas
@@ -25,9 +27,10 @@ import EditSpp from './components/Spp/EditSpp.vue'
 // Pembayaran
 import Pembayaran from './components/Pembayaran/Pembayaran.vue'
 import TambahPembayaran from './components/Pembayaran/TambahPembayaran.vue'
+// Report
+import Report from './components/Report.vue'
 // Login
 import Login from './components/Login.vue'
-import LoginSiswa from './components/LoginSiswa.vue'
 
 const router = createRouter({
     history : createWebHistory(),
@@ -52,9 +55,10 @@ const router = createRouter({
         // Pembayaran
         {path: '/pembayaran', name: "Pembayaran", component: Pembayaran},
         {path: '/bayar', name: "TambahPembayaran", component: TambahPembayaran},
+        // Report
+        {path: '/report', name: "Report", component: Report},
         // Login
         {path: '/login', name: "Login", component: Login},
-        {path: '/loginSiswa', name: "LoginSiswa", component: LoginSiswa},
     ],
     base : '/'
 })
@@ -62,6 +66,7 @@ const router = createRouter({
 const app = createApp(App)
 app.use(router)
 app.use(store)
+// app.use(VueHtml2pdf)
 app.config.globalProperties.axios  = axios
 app.mount("#app")
 
