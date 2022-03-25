@@ -41,12 +41,16 @@
                     localStorage.setItem('status', true)
                     localStorage.setItem('level', result.data.level)
                     localStorage.setItem('username', result.data.username)
+                    localStorage.setItem('nisn', result.data.nisn)
 
                     this.$emit("authenticated", true)
                     this.$emit("level", result.data.level)
                     this.$emit("username", result.data.username)
+                    this.$emit("nisn", result.data.nisn)
+
                     this.$store.dispatch('setUsername', result.data.username)
                     this.$store.dispatch('setLevel', result.data.level)
+                    this.$store.dispatch('setNisnl', result.data.nisn)
 
                     if (result.data.level == 'admin') {
                         this.$router.replace({name: "Dashboard"});

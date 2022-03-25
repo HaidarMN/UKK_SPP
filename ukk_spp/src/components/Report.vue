@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <h1>Cetak Laporan</h1>
+        <h1>Laporan</h1>
     
         <div class="grid-rp">
             <div class="add-form rp-1">
@@ -24,7 +24,7 @@
             </div>
 
             <div class="report rp-2">
-                <!-- <VueHtml2pdf
+                <!-- <vue-html2pdf
                     :show-layout                    = "true"
                     :float-layout                   = "false"
                     :enable-download                = "false"
@@ -39,6 +39,7 @@
                     ref                             = "html2Pdf"
                 > -->
                     <section>
+                        <!-- </vue-html2pdf> -->
                         <!-- Title -->
                         <h1>Laporan SPP</h1>
                         <h3>SMK Telkom Malang</h3>
@@ -66,10 +67,9 @@
                             </tbody>
                         </table>
                     </section>
-                <!-- </VueHtml2pdf> -->
-                <button class="button-add" style="float: left" @click="addsiswa()">
+                <!-- <button class="button-add" style="float: left" @click="addsiswa()">
                     <span class="button-text">Generate</span>
-                </button>
+                </button> -->
             </div>
         </div>
     </div>
@@ -102,7 +102,7 @@
 
                 var data = {
                     bulan:this.bulan,
-                    tahun:this.tahun
+                    tahun:this.tahun,
                 }
 
                 this.axios.post("http://localhost/lat_spp/public/api/report", data, option).then((result) => {
