@@ -9,11 +9,14 @@ use Auth;
 use Validator;
 use App\Tunggakan;
 use config;
+use DB;
+use Carbo\Carbon;
 
 class TransaksiController extends Controller
 {
     //CEK BAYAR
-    public function bayar(Request $req) {
+    public function bayar(Request $req)
+    {
         $validator = Validator::make($req->all(), [
             'nisn'          => 'required',
             'bulan_spp'     => 'required',
@@ -67,7 +70,8 @@ class TransaksiController extends Controller
     }
 
     //KURANG BAYAR
-    public function kurang($nisn) {
+    public function kurang($nisn)
+    {
         $gethistori = tunggakan::select(
             'siswa.nisn', 'siswa.nama', 'kelas.nama_kelas', 'kelas.jurusan', 'nominal'
         )->join(
@@ -82,5 +86,28 @@ class TransaksiController extends Controller
             'status', 'belum lunas'
         )->get();
         return Response()->json($gethistori);
+    }
+
+    //REPORT
+    public function report(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            'tahun' => 'required',
+            'bulan' => 'required'
+        ]);
+        if($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $tahun = $req->tahun;
+        $bulan = $req->bulan;
+
+        $data = DB::table('pembayaran')->join('siswa', 'pembayaran.nisn', '=', 'siswa.nisn')
+                    ->select('pembayaran.id_pembayaran', 'pembayaran.id_petugas', 'pembayaran.nisn', 'pembayaran.tgl_bayar', 'pembayaran.bulan_spp', 'pembayaran.tahun_spp')
+                    ->where('tahun_spp', '=', $tahun)
+                    ->where('bulan_spp', '=', $bulan)
+                    ->get();
+        
+        return Response()->json($data);
     }
 }
