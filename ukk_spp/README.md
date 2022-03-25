@@ -1,5 +1,11 @@
 # ukk_spp3
 
+## Install
+- axios
+- vue-router
+- vuex
+- vue-html2pdf
+
 ## Project setup
 ```
 npm install
