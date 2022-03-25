@@ -267,19 +267,18 @@ input[type=number] {
     left: 240px;
 }
 
-/* Chart */
-.db-chart {
+/* Quick Access */
+.db-qa {
     margin: 25px;
     margin-top: 15px;
-    height: 100%;
-    font-size: 0.9em;
+    padding: 25px;
     border-radius: 5px 5px 0 0;
     background: #204051;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.db-chart h1 {
+.db-qa h1 {
     color: #E4E3E3;
 }
 
@@ -433,13 +432,13 @@ input[name=search]:focus {
 .grid-db {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-areas: "left right";
 }
 
 .grid-db h1 {
     margin-bottom: 10px;
-    font-size: 45px;
+    font-size: 40px;
 }
 
 .content-db-1 {
@@ -448,6 +447,37 @@ input[name=search]:focus {
 
 .content-db-2 {
     grid-area: right;
+}
+
+.grid-rp {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "left right";
+}
+
+.rp-1 {
+    grid-area: left;
+}
+
+.rp-2 {
+    grid-area: right;
+}
+
+/* Report */
+.report {
+    border-left: 5px solid #3B6978;
+    height: 100%;
+    padding-left: 25px;
+}
+
+.report h1,
+.report h3,
+.report h5 {
+    font-size: auto;
+    color: #204051;
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 /* Box Info */
@@ -589,6 +619,26 @@ input[name=search]:focus {
 
 .button-log:hover {
     background: #204051;
+}
+
+.button-kelas {
+    height: 40px;
+    width: 100%;
+    padding: 0;
+    background: #0dcaf0;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    color: #E4E3E3;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;  
+}
+
+.button-kelas:hover {
+    background: #0d6efd;
 }
 
 .button-text,
