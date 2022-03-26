@@ -24,7 +24,7 @@
             </div>
 
             <div class="report rp-2">
-                <!-- <vue-html2pdf
+                <!-- <VueHtml2pdf
                     :show-layout                    = "true"
                     :float-layout                   = "false"
                     :enable-download                = "false"
@@ -38,8 +38,7 @@
                     pdf-content-width               = "800px"
                     ref                             = "html2Pdf"
                 > -->
-                    <section>
-                        <!-- </vue-html2pdf> -->
+                    <section ref="pdf_html"> <!-- ref="pdf_html" -->
                         <!-- Title -->
                         <h1>Laporan SPP</h1>
                         <h3>SMK Telkom Malang</h3>
@@ -76,15 +75,19 @@
                             </tbody>
                         </table>
                     </section>
-                <!-- <button class="button-add" style="float: left" @click="addsiswa()">
+                <!-- </VueHtml2pdf> -->
+                <button class="button-add" style="float: left" @click="generateReport()">
                     <span class="button-text">Generate</span>
-                </button> -->
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import jsPDF from 'jspdf'
+    // import VueHtml2pdf from 'vue-html2pdf'
+
     export default {
         name: "Report",
         data() {
@@ -147,7 +150,19 @@
                     // console.log(result)
                     this.siswa = result.data
                 })
+            },
+
+            generateReport() {
+                const doc = new jsPDF('p', 'pt', 'A4');
+
+                doc.fromHTML(this.$refs.pdf_html);
+                doc.save('Laporan_SPP.pdf');
+                // this.$refs.html2Pdf.generatePdf()
             }
         },
+
+        // components: {
+        //     VueHtml2pdf
+        // }
     }
 </script>
