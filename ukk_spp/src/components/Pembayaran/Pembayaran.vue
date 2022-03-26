@@ -5,7 +5,7 @@
         <!-- Add | Search | Button -->
         <div style="padding: 25px; padding-bottom: 0;">
             <input type="text" name="search" v-model="search" class="form-control" placeholder="Search..." 
-            @keyup.enter="cari()" autocomplete="off">
+            @keyup.enter="cari()" @input="cari()" autocomplete="off">
         </div>
 
         <!-- Table -->
@@ -13,8 +13,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ID Petugas</th>
-                    <th>NISN</th>
+                    <th>Petugas</th>
+                    <th>Siswa</th>
                     <th>Tanggal Bayar</th>
                     <th>Bulan SPP</th>
                     <th>Tahun SPP</th>
@@ -23,8 +23,16 @@
             <tbody>
                 <tr v-for="pem in pembayaran" :key="pem.id_pembayaran">
                     <td>{{pem.id_pembayaran}}</td>
-                    <td>{{pem.id_petugas}}</td>
-                    <td>{{pem.nisn}}</td>
+                    <td>
+                        <span  v-for="us in user.filter((us) => pem.id_petugas === us.id)" :key="us.id">
+                            {{us.name}}
+                        </span>
+                    </td>
+                    <td>
+                        <span  v-for="sis in siswa.filter((sis) => pem.nisn === sis.nisn)" :key="sis.nisn">
+                            {{sis.nama}}
+                        </span>
+                    </td>
                     <td>{{pem.tgl_bayar}}</td>
                     <td>{{pem.bulan_spp}}</td>
                     <td>{{pem.tahun_spp}}</td>
@@ -40,6 +48,8 @@
         data() {
             return {
                 pembayaran:[],
+                user:[],
+                siswa:[],
                 search:'',
             }
         },
@@ -85,14 +95,42 @@
                 })
 
                 this.axios.get("http://localhost/lat_spp/public/api/pembayaranss/" + data, option).then((result) => {
-                    console.log(result)
+                    // console.log(result)
                     this.pembayaran = result.data
+                })
+            },
+
+            getpetugas:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/user", option).then((result) => {
+                    // console.log(result)
+                    this.user = result.data
+                })
+            },
+
+            getsiswa:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/siswa", option).then((result) => {
+                    console.log(result)
+                    this.siswa = result.data
                 })
             }
         },
 
         mounted() {
             this.getpembayaran()
+            this.getpetugas()
+            this.getsiswa()
         }
     }
 </script>
