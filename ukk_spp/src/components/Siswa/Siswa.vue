@@ -5,7 +5,7 @@
         <!-- Add | Search | Button -->
         <div class="grid">
             <input type="text" name="search" v-model="search" class="form-control grid-left" placeholder="Search..." 
-            @keyup.enter="cari()" autocomplete="off">
+            @keyup.enter="cari()" @input="cari()" autocomplete="off">
             <router-link class="button-add grid-right" to="/siswa/tambahsiswa">
                 <i class='bx bxs-file-plus button-icon'></i>
                 <span class="button-text">Add</span>
