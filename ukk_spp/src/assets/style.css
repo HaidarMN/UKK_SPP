@@ -272,6 +272,7 @@ input[type=number] {
     margin: 25px;
     margin-top: 15px;
     padding: 25px;
+    padding-top: 12px;
     border-radius: 5px 5px 0 0;
     background: #204051;
     overflow: hidden;
@@ -279,7 +280,10 @@ input[type=number] {
 }
 
 .db-qa h1 {
+    font-size: 40px;
     color: #E4E3E3;
+    margin: 0;
+    margin-bottom: 25px;
 }
 
 /* Footer */
@@ -432,13 +436,8 @@ input[name=search]:focus {
 .grid-db {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-areas: "left right";
-}
-
-.grid-db h1 {
-    margin-bottom: 10px;
-    font-size: 40px;
 }
 
 .content-db-1 {
@@ -478,6 +477,21 @@ input[name=search]:focus {
     color: #204051;
     text-align: center;
     margin-bottom: 8px;
+}
+
+.report  h5 {
+    margin-bottom: 0;
+}
+
+.report hr {
+    border: 2px solid #204051;
+    margin-right: 25px;
+}
+
+.report .content-table {
+    margin-top: 0;
+    margin-left: 0;
+    width: calc(100% - 25px);
 }
 
 /* Box Info */
@@ -622,23 +636,60 @@ input[name=search]:focus {
 }
 
 .button-kelas {
-    height: 40px;
-    width: 100%;
+    display: inline-flex;
+    height: 38px;
     padding: 0;
     background: #0dcaf0;
     border: none;
     outline: none;
     border-radius: 5px;
     overflow: hidden;
-    color: #E4E3E3;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
-    text-align: center;
-    cursor: pointer;  
+    cursor: pointer;
+    float: left;
 }
 
 .button-kelas:hover {
-    background: #0d6efd;
+    background: #0bb5d8;
+}
+
+.button-siswa {
+    display: inline-flex;
+    height: 38px;
+    padding: 0;
+    background: #dc3545;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    float: left;
+}
+
+.button-siswa:hover {
+    background: #d32535;
+}
+
+.button-petugas {
+    display: inline-flex;
+    height: 38px;
+    padding: 0;
+    background: #ffc107;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    float: left;
+}
+
+.button-petugas:hover {
+    background: #edb100;
 }
 
 .button-text,
