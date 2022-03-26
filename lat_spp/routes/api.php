@@ -78,6 +78,9 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::post("/insert_petugas", "PetugasController@store");
     Route::put("/update_petugas/{id}", "PetugasController@update");
     Route::delete("/delete_petugas/{id}", "PetugasController@destroy");
+    Route::get('/petugas/{id}', 'PetugasController@cari_data');
+    Route::get('/getpetugas/{id}', 'PetugasController@getdetail');
+    Route::get('/totalpetugas', 'PetugasController@total');
 
     //PEMBAYARAN
     Route::get('pembayaran', 'PembayaranController@pembayaran');
@@ -97,7 +100,6 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::delete('/delete_user/{id}', 'UserController@destroy');
     Route::get('/user/{id}', 'UserController@cari_data');
     Route::get('/getuser/{id}', 'UserController@getdetail');
-    Route::get('/totaluser', 'UserController@total');
 });
 
 //PETUGAS
