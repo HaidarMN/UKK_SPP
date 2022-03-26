@@ -8,6 +8,9 @@ import {createWebHistory, createRouter} from 'vue-router'
 // import Vue from 'vue'
 import VueHtml2pdf from 'vue-html2pdf'
 
+// Moment.js (format date)
+import moment from 'moment'
+
 // Dashboard
 import Dashboard from './components/Dashboard.vue'
 // Kelas
@@ -68,9 +71,21 @@ const router = createRouter({
 
 const app = createApp(App)
 app.use(router)
+// Store.js
 app.use(store)
 app.use(VueHtml2pdf)
-app.config.globalProperties.axios  = axios
+// Axios
+app.config.globalProperties.axios = axios
+// Moment.js
+app.config.globalProperties.$filters = {
+  formatDate(value) {
+    if (value) {
+      // .locale()  = change languange, list code https://stackoverflow.com/a/55827203
+      // .format()  = change date format to 'Day, Date Month Year'
+      return moment(value).locale("id").format('dddd, Do MMMM YYYY')
+    }
+  }
+}
 app.mount("#app")
 
 // Toogle Sidebar
