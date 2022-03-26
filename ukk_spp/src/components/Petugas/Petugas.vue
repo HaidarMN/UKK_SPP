@@ -5,7 +5,7 @@
         <!-- Add | Search | Button -->
         <div class="grid">
             <input type="text" name="search" v-model="search" class="form-control grid-left" placeholder="Search..." 
-            @keyup.enter="cari()" autocomplete="off">
+            @keyup.enter="cari()" @input="cari()" autocomplete="off">
             <router-link class="button-add grid-right" to="/petugas/tambahpetugas">
                 <i class='bx bxs-file-plus button-icon'></i>
                 <span class="button-text">Add</span>
@@ -18,15 +18,17 @@
                 <tr>
                     <th>ID</th>
                     <th>Nama</th>
+                    <th>Username</th>
                     <th>E-mail</th>
                     <th>Level</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="us in user" :key="us.id">
-                    <td>{{us.id}}</td>
-                    <td>{{us.name}}</td>
+                <tr v-for="us in user" :key="us.id_petugas">
+                    <td>{{us.id_petugas}}</td>
+                    <td>{{us.nama_petugas}}</td>
+                    <td>{{us.username}}</td>
                     <td>{{us.email}}</td>
                     <td>{{us.level}}</td>
                     <td>
@@ -69,7 +71,7 @@
                     data_cari = "/" + this.search
                 }
 
-                this.axios.get("http://localhost/lat_spp/public/api/user" + data_cari, option).then((result) => {
+                this.axios.get("http://localhost/lat_spp/public/api/petugas" + data_cari, option).then((result) => {
                     // console.log(result)
                     this.user = result.data
                 })
@@ -82,7 +84,7 @@
                     }
                 }
 
-                this.axios.get("http://localhost/lat_spp/public/api/user", option).then((result) => {
+                this.axios.get("http://localhost/lat_spp/public/api/petugas", option).then((result) => {
                     // console.log(result)
                     this.user = result.data
                 })
@@ -96,7 +98,7 @@
                 }
 
                 if(confirm('yakin?')) {
-                    this.axios.delete("http://localhost/lat_spp/public/api/delete_user/" + id, option).then((result) => {
+                    this.axios.delete("http://localhost/lat_spp/public/api/delete_petugas/" + id, option).then((result) => {
                         console.log(result)
                         this.getpetugas()
                     })
