@@ -5,6 +5,7 @@
 - vue-router
 - vuex
 - vue-html2pdf (not sure)
+- moment (https://momentjs.com/)
 
 ## Project setup
 ```
