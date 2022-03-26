@@ -34,34 +34,53 @@
         <div class="grid-db">
             <!-- History Pembayaran -->
             <div class="content-db-1">
-                <h1 style="margin-right: 12.5px;">Histori Pembayaran</h1>
                 <table class="content-table" style="margin-right: 12.5px;">
                     <thead>
                         <tr>
-                            <th>Petugas</th>
-                            <th>Siswa</th>
-                            <th>Tanggal Bayar</th>
-                            <th>Bulan SPP</th>
-                            <th>Tahun SPP</th>
+                            <th style="font-size: 40px">
+                                History
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="last in latest" :key="last.id_pembayaran">
-                            <td>{{last.id_petugas}}</td>
-                            <td>{{last.nisn}}</td>
-                            <td>{{last.tgl_bayar}}</td>
-                            <td>{{last.bulan_spp}}</td>
-                            <td>{{last.tahun_spp}}</td>
+                        <tr v-for="last in latest" :key="last.id_pembayaran" style="text-align: left">
+                            <td>
+                                <h3>
+                                    {{ $filters.formatDate(last.tgl_bayar) }}
+                                </h3>
+                                <span  v-for="us in user.filter((us) => last.id_petugas === us.id)" :key="us.id">
+                                    Petugas: {{us.name}} | 
+                                </span>
+                                <span  v-for="sis in siswa.filter((sis) => last.nisn === sis.nisn)" :key="sis.nisn">
+                                    Siswa: {{sis.nama}} | 
+                                </span>
+                                <span>
+                                    SPP: {{last.bulan_spp}} {{last.tahun_spp}}
+                                </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- ?? -->
+            <!-- Quick Access -->
             <div class="content-db-2">
-                <h1 style="margin-left: 12.5px;">Quick Access</h1>
                 <div class="db-qa" style="margin-left: 12.5px;">
-                    <h1>halooo...</h1>
+                    <h1>Quick Access</h1>
+                    <router-link class="button-kelas grid-right" to="/kelas/tambahkelas">
+                        <i class='bx bxs-home button-icon'></i>
+                        <span class="button-text">Add Kelas</span>
+                    </router-link>
+                    <br><br>
+                    <router-link class="button-siswa grid-right" to="/siswa/tambahsiswa">
+                        <i class='bx bxs-face button-icon'></i>
+                        <span class="button-text">Add Siswa</span>
+                    </router-link>
+                    <br><br>
+                    <router-link class="button-petugas grid-right" to="/petugas/tambahpetugas">
+                        <i class='bx bxs-user button-icon'></i>
+                        <span class="button-text">Add Petugas</span>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -76,7 +95,9 @@
                 totalkelas:'',
                 totalsiswa:'',
                 totalpetugas:'',
-                latest:[]
+                latest:[],
+                user:[],
+                siswa:[]
             }
         },
 
@@ -114,7 +135,7 @@
                     }
                 }
 
-                this.axios.get("http://localhost/lat_spp/public/api/totaluser", option).then((result) => {
+                this.axios.get("http://localhost/lat_spp/public/api/totalpetugas", option).then((result) => {
                     // console.log(result)
                     this.totalpetugas = result.data
                 })
@@ -128,8 +149,34 @@
                 }
 
                 this.axios.get("http://localhost/lat_spp/public/api/latest", option).then((result) => {
-                    // console.log(result)
+                    console.log(result)
                     this.latest = result.data
+                })
+            },
+
+            getpetugas:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/user", option).then((result) => {
+                    // console.log(result)
+                    this.user = result.data
+                })
+            },
+
+            getsiswa:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/siswa", option).then((result) => {
+                    // console.log(result)
+                    this.siswa = result.data
                 })
             }
         },
@@ -139,6 +186,8 @@
             this.totsis()
             this.totpet()
             this.lastpembayaran()
+            this.getpetugas()
+            this.getsiswa()
         }
     }
 </script>

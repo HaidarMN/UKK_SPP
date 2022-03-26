@@ -18,7 +18,7 @@
                 <br>
 
                 <!-- Button -->
-                <button class="button-add" style="float: left" @click="getreport()">
+                <button class="button-add" style="float: left" @click="getreport(); getpetugas(); getsiswa()">
                     <span class="button-text">Show</span>
                 </button>
             </div>
@@ -44,13 +44,14 @@
                         <h1>Laporan SPP</h1>
                         <h3>SMK Telkom Malang</h3>
                         <h5>Jl. Danau Ranau, Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur</h5>
+                        <hr>
 
                         <!-- Table -->
                         <table class="content-table">
                             <thead>
                                 <tr>
-                                    <th>ID Petugas</th>
-                                    <th>NISN</th>
+                                    <th>Petugas</th>
+                                    <th>Siswa</th>
                                     <th>Tanggal Bayar</th>
                                     <th>Bulan SPP</th>
                                     <th>Tahun SPP</th>
@@ -58,8 +59,16 @@
                             </thead>
                             <tbody>
                                 <tr v-for="rep in report" :key="rep.id_pembayaran">
-                                    <td>{{rep.id_petugas}}</td>
-                                    <td>{{rep.nisn}}</td>
+                                    <td>
+                                        <span  v-for="us in user.filter((us) => rep.id_petugas === us.id)" :key="us.id">
+                                            {{us.name}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span  v-for="sis in siswa.filter((sis) => rep.nisn === sis.nisn)" :key="sis.nisn">
+                                            {{sis.nama}}
+                                        </span>
+                                    </td>
                                     <td>{{rep.tgl_bayar}}</td>
                                     <td>{{rep.bulan_spp}}</td>
                                     <td>{{rep.tahun_spp}}</td>
@@ -88,7 +97,10 @@
                     {key:"Juli", val:"Juli"}, {key:"Agustus", val:"Agustus"}, {key:"September", val:"September"},
                     {key:"Oktober", val:"Oktober"}, {key:"November", val:"November"}, {key:"Desember", val:"Desember"}
                 ],
-                report:[]
+                report:[],
+                user:[],
+                siswa:[],
+                msg:''
             }
         },
 
@@ -106,10 +118,36 @@
                 }
 
                 this.axios.post("http://localhost/lat_spp/public/api/report", data, option).then((result) => {
-                    // console.log(result)
+                    console.log(result)
                     this.report = result.data
                 })
+            },
+
+            getpetugas() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/user", option).then((result) => {
+                    // console.log(result)
+                    this.user = result.data
+                })
+            },
+
+            getsiswa() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/siswa", option).then((result) => {
+                    // console.log(result)
+                    this.siswa = result.data
+                })
             }
-        }
+        },
     }
 </script>
