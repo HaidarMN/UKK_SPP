@@ -93,7 +93,8 @@ class TransaksiController extends Controller
     {
         $validator = Validator::make($req->all(), [
             'tahun' => 'required',
-            'bulan' => 'required'
+            'bulan' => 'required',
+            
         ]);
         if($validator->fails()) {
             return response()->json($validator->errors());

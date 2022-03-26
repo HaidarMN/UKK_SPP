@@ -99,7 +99,7 @@ class PembayaranController extends Controller
 
     //LAST
     public function last() {
-        $last = DB::table('pembayaran')->latest('id_pembayaran')->take(8)->get();
+        $last = DB::table('pembayaran')->latest('id_pembayaran')->take(5)->get();
         return Response()->json($last);
     }
 

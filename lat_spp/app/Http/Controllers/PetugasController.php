@@ -7,6 +7,7 @@ use App\Petugas;
 use Illuminate\Support\Facades\validator;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use DB;
 
 class PetugasController extends Controller
 {
@@ -68,7 +69,25 @@ class PetugasController extends Controller
     //GET
     public function petugas() {
         $getpetugas=Petugas::get();
-        return Response()->json(['data'=>$getpetugas]);
+        return Response()->json($getpetugas);
+    }
+
+    //GET 1 DATA
+    public function getdetail($id_petugas){
+        $detail=User::where('id_petugas', $id_petugas)->first();
+        return Response()->json($detail);
+    }
+
+    //SEARCH
+    public function cari_data($kata_kunci) {
+        $detail = Petugas::where('nama_petugas', 'like', '%'.$kata_kunci.'%')->get();
+        return Response()->json($detail);
+    }
+
+    //TOTAL
+    public function total() {
+        $user = DB::table('petugas')->count();
+        return Response()->json($user);
     }
 
     public function petugasAuth() {

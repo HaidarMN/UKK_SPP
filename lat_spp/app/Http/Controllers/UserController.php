@@ -54,16 +54,18 @@ class UserController extends Controller
             'username'      => $request->get('username'),
             'password'      => Hash::make($request->get('password')),
             'nama_petugas'  => $request->get('nama_petugas'),
+            'email'         => $request->get('email'),
+            'level'         => $request->get('level'),
         ]);
         
         //Data USER
         $user = User::create([
             'name'          => $petugas->nama_petugas,
-            'email'         => $request->get('email'),
+            'email'         => $petugas->email,
             'password'      => $petugas->password,
-            'level'         => $request->get('level'),
-            'id_petugas'    => DB::getPdo()->lastInsertId(),
-            'username'      => $request->username
+            'level'         => $petugas->level,
+            'username'      => $petugas->username,
+            'id_petugas'    => DB::getPdo()->lastInsertId()
         ]);
 
         //PETUGAS
@@ -179,12 +181,6 @@ class UserController extends Controller
         return Response()->json($detail);
     }
     
-    //TOTAL
-    public function total() {
-        $user = DB::table('users')->count();
-        return Response()->json($user);
-    }
-
     public function getAuthenticatedUser()
     {
         try {
