@@ -100,10 +100,13 @@
                 }
 
                 if(confirm('yakin?')) {
-                    this.axios.delete("http://localhost/lat_spp/public/api/delete_siswa/" + nisn, option).then((result) => {
-                        console.log(result)
-                        this.getsiswa()
-                    })
+                    this.axios.all([
+                        this.axios.delete("http://localhost/lat_spp/public/api/delete_siswa/" + nisn, option),
+                        this.axios.delete("http://localhost/lat_spp/public/api/delsis/" + nisn, option).then((result) => {
+                            console.log(result)
+                            this.getsiswa()
+                        })
+                    ])
                 }
             }
         },

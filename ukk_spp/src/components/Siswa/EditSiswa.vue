@@ -2,7 +2,9 @@
     <div class="content">
         <!-- Form -->
         <div class="add-form">
+            <input type="hidden" name="id" v-model="id" class="form-control">
             <input type="hidden" name="nisn" v-model="nisn" class="form-control">
+            <input type="hidden" name="level" v-model="level" class="form-control">
             NIS
             <input type="number" name="nis" class="form-control" v-model="nis" placeholder="Masukkan nis"
             autocomplete="off">
@@ -29,7 +31,17 @@
             <input type="email" name="email" class="form-control" v-model="email" placeholder="Masukkan email"
             autocomplete="off">
             <br>
-            <input type="hidden" name="password" class="form-control" v-model="password">
+            Username
+            <input type="text" name="username" class="form-control" v-model="username" placeholder="Masukkan username"
+            autocomplete="off">
+            <br>
+            Password
+            <input type="password" name="password" class="form-control" v-model="password" placeholder="Masukkan password" 
+            autocomplete="off">
+            <br>
+            Password Confirmation
+            <input type="password" name="password_confirmation" class="form-control" v-model="password_confirmation" 
+            placeholder="Ulangi password" autocomplete="off">
             <br>
 
             <!-- Button -->
@@ -39,7 +51,7 @@
             </router-link>
             <button class="button-add" @click="editsiswa()">
                 <i class='bx bxs-file-plus button-icon'></i>
-                <span class="button-text">Add</span>
+                <span class="button-text">Edit</span>
             </button>
 
             <!-- Notification -->
@@ -61,6 +73,7 @@
         name: "EditSiswa",
         data() {
             return {
+                id:'',
                 nisn:'',
                 nis:'',
                 nama:'',
@@ -68,7 +81,10 @@
                 alamat:'',
                 no_telp:'',
                 email:'',
+                username:'',
                 password:'',
+                password_confirmation:'',
+                level:'',
                 listkelas:[],
                 style_msg: '',
                 message: '',
@@ -102,11 +118,17 @@
                     this.nisn       = result.data.nisn,
                     this.nis        = result.data.nis,
                     this.nama       = result.data.nama,
-                    this.kelas      = result.data.id_kelas
-                    this.alamat     = result.data.alamat
-                    this.no_telp    = result.data.no_telp
+                    this.kelas      = result.data.id_kelas,
+                    this.alamat     = result.data.alamat,
+                    this.no_telp    = result.data.no_telp,
                     this.email      = result.data.email
-                    this.password   = result.data.password
+                })
+
+                this.axios.get("http://localhost/lat_spp/public/api/getusersis/" + nisn, option).then((result) => {
+                    // console.log(result)
+                    this.username   = result.data.username,
+                    this.id         = result.data.id,
+                    this.level      = result.data.level
                 })
             },
 
@@ -125,7 +147,10 @@
                     alamat:this.alamat,
                     no_telp:this.no_telp,
                     email:this.email,
-                    password:this.password
+                    username:this.username,
+                    password:this.password,
+                    password_confirmation:this.password_confirmation,
+                    level:this.level
                 }
 
                 this.axios.put("http://localhost/lat_spp/public/api/update_siswa/" + this.nisn, datasiswa, option).then((result) => {
