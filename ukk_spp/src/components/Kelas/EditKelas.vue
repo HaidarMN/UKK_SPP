@@ -20,7 +20,7 @@
             <br>
 
             <!-- Button -->
-            <button class="button-edit" @click="editkelas()">
+            <button class="button-add" @click="editkelas()">
                 <i class='bx bxs-edit-alt button-icon'></i>
                 <span class="button-text">Edit</span>
             </button>
