@@ -32,11 +32,11 @@
                     <td>{{us.email}}</td>
                     <td>{{us.level}}</td>
                     <td>
-                        <router-link class="button-edit" :to="{path: '/petugas/editpetugas/' + us.id}">
+                        <router-link class="button-edit" :to="{path: '/petugas/editpetugas/' + us.id_petugas}">
                             <i class='bx bxs-edit-alt button-icon'></i>
                         </router-link>
                         &nbsp;
-                        <a class="button-del" @click="delpetugas(us.id)">
+                        <a class="button-del" @click="delpetugas(us.id_petugas)">
                             <i class='bx bxs-trash button-icon'></i>
                         </a>
                     </td>
@@ -52,7 +52,8 @@
         data() {
             return {
                 user:[],
-                search:''
+                search:'',
+                data:[]
             }
         },
 
@@ -90,7 +91,20 @@
                 })
             },
 
-            delpetugas:function(id) {
+            getid:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/user", option).then((result) => {
+                    // console.log(result)
+                    this.data = result.data
+                })
+            },
+
+            delpetugas:function(id_petugas) {
                 var option = {
                     headers:{
                         'Authorization':'bearer ' + localStorage.getItem("token")
@@ -98,10 +112,13 @@
                 }
 
                 if(confirm('yakin?')) {
-                    this.axios.delete("http://localhost/lat_spp/public/api/delete_petugas/" + id, option).then((result) => {
-                        console.log(result)
-                        this.getpetugas()
-                    })
+                    this.axios.all([
+                        this.axios.delete("http://localhost/lat_spp/public/api/delete_petugas/" + id_petugas, option),
+                        this.axios.delete("http://localhost/lat_spp/public/api/delpet/" + id_petugas, option).then((result) => {
+                            console.log(result)
+                            this.getpetugas()
+                        })
+                    ])
                 }
             }
         },
