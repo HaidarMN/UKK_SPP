@@ -34,6 +34,8 @@ Route::post('login', 'UserController@login');
 
 Route::group(['middleware'=>['jwt.verify:admin,petugas,siswa']], function() {
     Route::get('/login/check', 'UserController@getAuthenticatedUser');
+    Route::get('user', 'UserController@user');
+    Route::get('siswa', 'SiswaController@siswa');
 });
 
 Route::group(['middleware'=>['jwt.verify:admin,petugas']], function() {
@@ -57,7 +59,7 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::get('/totalkelas', 'KelasController@total');
 
     //SISWA
-    Route::get('siswa', 'SiswaController@siswa');
+    // Route::get('siswa', 'SiswaController@siswa');
     Route::post("/insert_siswa", "SiswaController@store");
     Route::put("/update_siswa/{id}", "SiswaController@update");
     Route::delete("/delete_siswa/{id}", "SiswaController@destroy");
@@ -96,10 +98,13 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::get('/kurang/{id}', 'TransaksiController@kurang');
 
     //USER
-    Route::get('user', 'UserController@user');
-    Route::delete('/delete_user/{id}', 'UserController@destroy');
+    // Route::get('user', 'UserController@user');
+    Route::put("/update_user/{id}", "UserController@update");
+    Route::delete('/delpet/{id}', 'UserController@delpet');
+    Route::delete('/delsis/{id}', 'UserController@delsis');
     Route::get('/user/{id}', 'UserController@cari_data');
     Route::get('/getuser/{id}', 'UserController@getdetail');
+    Route::get('/getusersis/{id}', 'UserController@getdetailsis');
 });
 
 //PETUGAS
