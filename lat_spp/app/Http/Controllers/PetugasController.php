@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Petugas;
+use App\User;
 use Illuminate\Support\Facades\validator;
 use Illuminate\Support\Facades\Hash;
 use Auth;
@@ -35,25 +36,58 @@ class PetugasController extends Controller
     }
 
     //UPDATE
-    public function update(Request $req, $id_petugas) {
-        $validator = Validator::make($req->all(), [
-            'username'              => 'required',
-            'password'              => 'required',
-            'nama_petugas'          => 'required',
+    public function update(Request $request, $id_petugas)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_petugas'  => 'required|string|max:255',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'password'      => 'required|string|min:6|confirmed',
+            'level'         => 'required',
+            'username'      => 'required'
         ]);
+
         if($validator->fails()) {
-            return Response ()->json($validator->errors());
-        }
-        $ubah = Petugas::where('id_petugas', $id_petugas)->update([
-            'username'              => $req->username,
-            'password'              => hash::make($req->password),
-            'nama_petugas'          => $req->nama_petugas,
+            $data['status']     = false;
+            $data['messagae']   = $validator->errors();
+            return Response ()->json($data);
+        }    
+
+        //Data PETUGAS
+        $petugas = Petugas::where('id_petugas', $id_petugas)->update([
+            'username'      => $request->get('username'),
+            'password'      => Hash::make($request->get('password')),
+            'nama_petugas'  => $request->get('nama_petugas'),
+            'email'         => $request->get('email'),
+            'level'         => $request->get('level'),
         ]);
-        if($ubah) {
-            return Response()->json(['status'=>'Berhasil mengubah data']);
+        
+        //Data USER
+        $user = User::where('id_petugas', $id_petugas)->update([
+            'name'          => $request->get('nama_petugas'),
+            'email'         => $request->get('email'),
+            'password'      => Hash::make($request->get('password')),
+            'level'         => $request->get('level'),
+            'username'      => $request->get('username'),
+        ]);
+
+        //PETUGAS
+        if($petugas) {
+            $data['status']     = true;
+            $data['message']    = "Berhasil mengubah petugas";
         } else {
-            return Response()->json(['status'=>'Gagal mengubah data']);
+            $data['status']     = false;
+            $data['message']    = "Gagal mengubah petugas";
         }
+
+        //USER
+        if($user) {
+            $data['status']     = true;
+            $data['message']    = "Berhasil mengubah petugas";
+        } else {
+            $data['status']     = false;
+            $data['message']    = "Gagal mengubah petugas";
+        }
+        return $data;
     }
 
     //DELETE

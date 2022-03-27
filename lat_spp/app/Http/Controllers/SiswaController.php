@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Siswa;
+use App\User;
 use Illuminate\Support\Facades\validator;
 use Illuminate\Support\Facades\Hash;
 use Auth;
@@ -48,36 +49,62 @@ class SiswaController extends Controller
     }
     
     //UPDATE
-    public function update(Request $req, $nisn) {
-        $validator = Validator::make($req->all(), [
-            'nis'       => 'required',
-            'nama'      => 'required',
-            'id_kelas'  => 'required',
-            'alamat'    => 'required',
-            'no_telp'   => 'required',
-            'email'     => 'required',
-            'password'  => 'required',
+    public function update(Request $request, $nisn)
+    {
+        $validator = Validator::make($request->all(), [
+            'nis'           => 'required',
+            'nama'          => 'required|string|max:255',
+            'id_kelas'      => 'required',
+            'alamat'        => 'required',
+            'no_telp'       => 'required',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'password'      => 'required|string|min:6|confirmed',
+            'level'         => 'required',
+            'username'      => 'required'
         ]);
+
         if($validator->fails()) {
             $data['status']     = false;
             $data['messagae']   = $validator->errors();
             return Response ()->json($data);
         }
-        $ubah = Siswa::where('nisn', $nisn)->update([
-            'nis'       => $req->nis,
-            'nama'      => $req->nama,
-            'id_kelas'  => $req->id_kelas,
-            'alamat'    => $req->alamat,
-            'no_telp'   => $req->no_telp,
-            'email'     => $req->email,
-            'password'  => Hash::make($req->password),
+
+        //Data SISWA
+        $siswa = Siswa::where('nisn', $nisn)->update([
+            'nis'       => $request->nis,
+            'nama'      => $request->nama,
+            'id_kelas'  => $request->id_kelas,
+            'alamat'    => $request->alamat,
+            'no_telp'   => $request->no_telp,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
         ]);
-        if($ubah) {
+
+        //Data USER
+        $user = User::where('nisn', $nisn)->update([
+            'username'      => $request->get('username'),
+            'email'         => $request->email,
+            'password'      => Hash::make($request->password),
+            'name'          => $request->nama,
+            'level'         => $request->get('level'),
+        ]);
+
+        //SISWA
+        if($siswa) {
             $data['status']     = true;
-            $data['message']    = "Berhasil mengubah data";
+            $data['message']    = "Berhasil mengubah siswa";
         } else {
             $data['status']     = false;
-            $data['message']    = "Gagal mengubah data";
+            $data['message']    = "Gagal mengubah siswa";
+        }
+
+        //USER
+        if($user) {
+            $data['status']     = true;
+            $data['message']    = "Berhasil mengubah siswa";
+        } else {
+            $data['status']     = false;
+            $data['message']    = "Gagal mengubah siswa";
         }
         return $data;
     }

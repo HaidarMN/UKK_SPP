@@ -126,8 +126,8 @@ class UserController extends Controller
             'email'         => $siswa->email,
             'password'      => $siswa->password,
             'name'          => $siswa->nama,
-            'nisn'          => DB::getPdo()->lastInsertId(),
             'level'         => $request->get('level'),
+            'nisn'          => DB::getPdo()->lastInsertId(),
         ]);
 
         //SISWA
@@ -151,8 +151,20 @@ class UserController extends Controller
     }
     
     //DELETE
-    public function destroy($id) {
-        $hapus = User::where('id', $id)->delete();
+    public function delpet($id_petugas) {
+        $hapus = User::where('id_petugas', $id_petugas)->delete();
+        if($hapus) {
+            $data['status']     = true;
+            $data['message']    = "Berhasil menghapus data";
+        } else {
+            $data['status']     = false;
+            $data['message']    = "Gagal menghapus data";
+        }
+        return $data;
+    }
+
+    public function delsis($nisn) {
+        $hapus = User::where('nisn', $nisn)->delete();
         if($hapus) {
             $data['status']     = true;
             $data['message']    = "Berhasil menghapus data";
@@ -172,6 +184,11 @@ class UserController extends Controller
     //GET 1 DATA
     public function getdetail($id){
         $detail=User::where('id', $id)->first();
+        return Response()->json($detail);
+    }
+
+    public function getdetailsis($nisn){
+        $detail=User::where('nisn', $nisn)->first();
         return Response()->json($detail);
     }
 
