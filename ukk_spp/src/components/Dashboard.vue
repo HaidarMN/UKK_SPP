@@ -67,6 +67,7 @@
             <div class="content-db-2">
                 <div class="db-qa" style="margin-left: 12.5px;">
                     <h1>Quick Access</h1>
+                    <hr>
                     <router-link class="button-kelas grid-right" to="/kelas/tambahkelas">
                         <i class='bx bxs-home button-icon'></i>
                         <span class="button-text">Add Kelas</span>

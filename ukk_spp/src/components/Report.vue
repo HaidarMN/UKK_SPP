@@ -13,7 +13,7 @@
                 </select>
                 <br>
                 Tahun
-                <input type="number" name="tahun" class="form-control" v-model="tahun" placeholder="Masukkan tahun" 
+                <input type="number" name="tahun" class="form-control" v-model="tahun" placeholder="Masukkan tahun"
                 autocomplete="off">
                 <br>
 
@@ -156,7 +156,12 @@
                 const doc = new jsPDF('p', 'pt', 'A4');
 
                 doc.fromHTML(this.$refs.pdf_html);
-                doc.save('Laporan_SPP.pdf');
+                doc.setProperties({
+                    title: "laporan_spp"
+                })
+                let win = window.open(doc.output('bloburl'), 'popUpWindow',
+                'height = 700px, width = 700px, left = 400%, top = 50%, resizable = yes, scrollbars = yes')
+                console.log(win)
                 // this.$refs.html2Pdf.generatePdf()
             }
         },
