@@ -24,6 +24,7 @@ import EditSiswa from './components/Siswa/EditSiswa.vue'
 // Petugas
 import Petugas from './components/Petugas/Petugas.vue'
 import TambahPetugas from './components/Petugas/TambahPetugas.vue'
+import EditPetugas from './components/Petugas/EditPetugas.vue'
 // SPP
 import Spp from './components/Spp/Spp.vue'
 import TambahSpp from './components/Spp/TambahSpp.vue'
@@ -52,6 +53,7 @@ const router = createRouter({
         // Petugas
         {path: '/petugas', name: "Petugas", component: Petugas},
         {path: '/petugas/tambahpetugas', name: "TambahPetugas", component: TambahPetugas},
+        {path: '/petugas/editpetugas/:id', name: "EditPetugas", component: EditPetugas},
         // Spp
         {path: '/spp', name: "Spp", component: Spp},
         {path: '/spp/tambahspp', name: "TambahSpp", component: TambahSpp},        
