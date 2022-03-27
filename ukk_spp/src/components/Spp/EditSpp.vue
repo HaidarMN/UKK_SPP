@@ -23,7 +23,7 @@
             </router-link>
             <button class="button-add" @click="addspp()">
                 <i class='bx bxs-file-plus button-icon'></i>
-                <span class="button-text">Add</span>
+                <span class="button-text">Edit</span>
             </button>
 
             <!-- Notification -->
