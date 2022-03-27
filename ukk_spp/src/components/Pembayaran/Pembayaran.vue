@@ -108,7 +108,7 @@
                 }
 
                 this.axios.get("http://localhost/lat_spp/public/api/user", option).then((result) => {
-                    // console.log(result)
+                    console.log(result)
                     this.user = result.data
                 })
             },
