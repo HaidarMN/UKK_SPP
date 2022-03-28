@@ -26,11 +26,10 @@
             </router-link>
             <button class="button-add" @click="addpembayaran()">
                 <i class='bx bxs-file-plus button-icon'></i>
-                <span class="button-text">Add</span>
+                <span class="button-text">Bayar</span>
             </button>
 
             <!-- Notification -->
-            <br><br>
             <div v-bind:class="style_msg">
                 <div v-if="error == true">
                     <div v-for="msg in message" :key="msg.id_pembayaran">
@@ -77,7 +76,7 @@
                 }
 
                 this.axios.post("http://localhost/lat_spp/public/api/bayar", datapembayaran, option).then((result) => {
-                    // console.log(result)
+                    console.log(result)
                     if(result.data.status == true) {
                         this.error = false
                         this.message = result.data.message
