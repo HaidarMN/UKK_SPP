@@ -19,7 +19,7 @@ class SppController extends Controller
         ]);
         if($validator->fails()) {
             $data['status']     = false;
-            $data['messagae']   = $validator->errors();
+            $data['message']   = $validator->errors();
             return Response ()->json($data);
         }
         $save = Spp::create([
@@ -46,7 +46,7 @@ class SppController extends Controller
         ]);
         if($validator->fails()) {
             $data['status']     = false;
-            $data['messagae']   = $validator->errors();
+            $data['message']   = $validator->errors();
             return Response ()->json($data);
         }
         $ubah = Spp::where('id_spp', $id_spp)->update([

@@ -45,7 +45,7 @@ class UserController extends Controller
 
         if($validator->fails()) {
             $data['status']     = false;
-            $data['messagae']   = $validator->errors();
+            $data['message']   = $validator->errors();
             return Response ()->json($data);
         }    
 
@@ -105,7 +105,7 @@ class UserController extends Controller
 
         if($validator->fails()) {
             $data['status']     = false;
-            $data['messagae']   = $validator->errors();
+            $data['message']   = $validator->errors();
             return Response ()->json($data);
         }
 

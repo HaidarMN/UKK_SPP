@@ -23,7 +23,9 @@ class TransaksiController extends Controller
             'tahun_spp'     => 'required',
         ]);
         if($validator->fails()) {
-            return Response()->json($validator->errors()->toJson(), 400);
+            $data['status']     = false;
+            $data['message']    = $validator->errors();
+            return Response ()->json($data);
         }
         $ceklunas=tunggakan::where('nisn', $req->get('nisn'))
             ->where('bulan_spp', $req->get('bulan_spp'))

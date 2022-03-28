@@ -20,7 +20,7 @@ class KelasController extends Controller
         ]);
         if($validator->fails()) {
             $data['status']     = false;
-            $data['messagae']   = $validator->errors();
+            $data['message']   = $validator->errors();
             return Response ()->json($data);
         }
         $save = Kelas::create([
@@ -47,7 +47,7 @@ class KelasController extends Controller
         ]);
         if($validator->fails()) {
             $data['status']     = false;
-            $data['messagae']   = $validator->errors();
+            $data['message']   = $validator->errors();
             return Response ()->json($data);
         }
         $ubah = Kelas::where('id_kelas', $id_kelas)->update([
