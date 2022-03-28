@@ -44,7 +44,6 @@
             </button>
 
             <!-- Notification -->
-            <br><br>
             <div v-bind:class="style_msg">
                 <div v-if="error == true">
                     <div v-for="msg in message" :key="msg.nisn">
