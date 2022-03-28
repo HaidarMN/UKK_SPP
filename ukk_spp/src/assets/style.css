@@ -256,10 +256,25 @@ input[type=number] {
 
 .content .add-form {
     margin: 25px;
+    padding: 25px;
     width: calc(100% - 50px);
     left: 78px;
+    background: #84A9AC;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     color: #204051;
+    font-weight: bold;
     font-size: 18px;
+}
+
+.content .alert {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.content p {
+    margin-bottom: 5px;
+    font-weight: normal;
 }
 
 .sidebar.active ~ .content {
