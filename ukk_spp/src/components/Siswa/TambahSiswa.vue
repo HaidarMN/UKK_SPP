@@ -11,7 +11,7 @@
             autocomplete="off">
             <br>
             Kelas
-            <select name="kelas" class="form-control" v-model="kelas">
+            <select name="kelas" class="form-select" v-model="kelas">
                 <option value="" selected hidden disabled>Pilih kelas</option>
                 <option v-for="kel in listkelas" :key="kel.id_kelas" v-bind:value="kel.id_kelas">{{kel.nama_kelas}}</option>
             </select>
@@ -28,9 +28,22 @@
             <input type="email" name="email" class="form-control" v-model="email" placeholder="Masukkan email"
             autocomplete="off">
             <br>
+            Username
+            <input type="text" name="username" class="form-control" v-model="username" placeholder="Masukkan username"
+            autocomplete="off">
+            <br>
             Password
             <input type="password" name="password" class="form-control" v-model="password" placeholder="Masukkan password"
             autocomplete="off">
+            <br>
+            Password Confirmation
+            <input type="password" name="password_confirmation" class="form-control" v-model="password_confirmation"
+            placeholder="Ulangi password" autocomplete="off">
+            <br>
+            Level
+            <select name="level" class="form-control" v-model="level" disabled>
+                <option value="siswa">Siswa</option>
+            </select>
             <br>
 
             <!-- Button -->
@@ -61,14 +74,16 @@
         name: "TambahSiswa",
         data() {
             return {
-                nisn:'',
                 nis:'',
                 nama:'',
                 kelas:'',
                 alamat:'',
                 no_telp:'',
                 email:'',
+                username:'',
                 password:'',
+                password_confirmation:'',
+                level:'siswa',
                 listkelas:[],
                 style_msg: '',
                 message: '',
@@ -98,17 +113,19 @@
                 }
 
                 var datasiswa = {
-                    nisn:this.nisn,
                     nis:this.nis,
                     nama:this.nama,
                     id_kelas:this.kelas,
                     alamat:this.alamat,
                     no_telp:this.no_telp,
                     email:this.email,
-                    password:this.password
+                    username:this.username,
+                    password:this.password,
+                    password_confirmation:this.password_confirmation,
+                    level:this.level
                 }
 
-                this.axios.post("http://localhost/lat_spp/public/api/insert_siswa", datasiswa, option).then((result) => {
+                this.axios.post("http://localhost/lat_spp/public/api/register_siswa", datasiswa, option).then((result) => {
                     // console.log(result)
                     if(result.data.status == true) {
                         this.error = false
