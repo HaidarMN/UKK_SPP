@@ -259,12 +259,19 @@ input[type=number] {
     padding: 25px;
     width: calc(100% - 50px);
     left: 78px;
-    background: #84A9AC;
+    background: #3B6978;
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    color: #204051;
+    color: #E4E3E3;
     font-weight: bold;
     font-size: 18px;
+}
+
+.grid-rp .add-form {
+    padding: 0;
+    background: #E4E3E3;
+    color: #204051;
+    box-shadow: none;
 }
 
 .content .alert {
@@ -622,7 +629,7 @@ input[name=search]:focus {
     display: inline-flex;
     height: 38px;
     padding: 0;
-    background: #3B6978;
+    background: #84A9AC;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -633,7 +640,7 @@ input[name=search]:focus {
 }
 
 .button-back:hover {
-    background: #204051;
+    background: #76989A;
 }
 
 .button-log {
