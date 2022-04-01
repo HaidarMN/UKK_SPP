@@ -7,7 +7,7 @@
             autocomplete="off">
             <br>
             Bulan SPP
-            <select name="bulan_spp" class="form-control" v-model="bulan_spp">
+            <select name="bulan_spp" class="form-select" v-model="bulan_spp">
                 <option value="" selected hidden disabled>Pilih bulan spp</option>
                 <option v-for="bln in listbln" :key="bln.key" v-bind:value="bln.key">
                     {{bln.val}}
@@ -15,8 +15,10 @@
             </select>
             <br>
             Tahun SPP
-            <input type="number" name="tahun_spp" class="form-control" v-model="tahun_spp" placeholder="Masukkan tahun spp" 
-            autocomplete="off">
+            <select name="tahun_spp" class="form-select" v-model="tahun_spp">
+                <option value="" selected hidden disabled>Pilih tahun spp</option>
+                <option v-for="spp in listspp" :key="spp.id_spp" v-bind:value="spp.tahun">{{spp.tahun}}</option>
+            </select>
             <br>
 
             <!-- Button -->
@@ -56,6 +58,7 @@
                     {key:"Juli", val:"Juli"}, {key:"Agustus", val:"Agustus"}, {key:"September", val:"September"},
                     {key:"Oktober", val:"Oktober"}, {key:"November", val:"November"}, {key:"Desember", val:"Desember"}
                 ],
+                listspp:[],
                 message: '',
                 error:false
             }
@@ -110,7 +113,24 @@
                         this.style_msg = "alert alert-danger"
                     }
                 })
-            }
+            },
+
+            getspp:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/spp", option).then((result) => {
+                    console.log(result)
+                    this.listspp = result.data
+                })
+            },
+        },
+
+        mounted() {
+            this.getspp()
         }
     }
 </script>

@@ -18,6 +18,7 @@
                     <th>Tanggal Bayar</th>
                     <th>Bulan SPP</th>
                     <th>Tahun SPP</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,7 @@
                     <td>{{pem.tgl_bayar}}</td>
                     <td>{{pem.bulan_spp}}</td>
                     <td>{{pem.tahun_spp}}</td>
+                    <td>{{pem.status}}</td>
                 </tr>
             </tbody>
         </table>
@@ -85,11 +87,6 @@
                 var data = localStorage.getItem('nisn');
 
                 this.axios.get("http://localhost/lat_spp/public/api/pembayaran", option).then((result) => {
-                    // console.log(result)
-                    this.pembayaran = result.data
-                })
-
-                this.axios.get("http://localhost/lat_spp/public/api/pembayarans", option).then((result) => {
                     // console.log(result)
                     this.pembayaran = result.data
                 })
