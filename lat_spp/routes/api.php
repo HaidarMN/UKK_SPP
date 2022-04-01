@@ -32,24 +32,33 @@ Route::post('login', 'UserController@login');
 
 // Route::get('/pembayaranss/{id}', 'PembayaranController@getnisn');
 
+// ALL
 Route::group(['middleware'=>['jwt.verify:admin,petugas,siswa']], function() {
     Route::get('/login/check', 'UserController@getAuthenticatedUser');
     Route::get('user', 'UserController@user');
     Route::get('siswa', 'SiswaController@siswa');
 });
 
+// ADMIN & PETUGAS
 Route::group(['middleware'=>['jwt.verify:admin,petugas']], function() {
+    // REPORT
     Route::post('report', 'TransaksiController@report');
+
+    // BAYAR
+    Route::post('bayar', 'PembayaranController@store');
+
+    // SPP
+    Route::get('spp', 'SppController@spp');
 });
 
-//ADMIN
+// ADMIN
 Route::group(['middleware'=>['jwt.verify:admin']], function() {
 
-    //JWT
+    // JWT
     Route::post('register', 'UserController@register');
     Route::post('register_siswa', 'UserController@regsis');
     
-    //KELAS
+    // KELAS
     Route::get('kelas', 'KelasController@kelas');
     Route::post("/insert_kelas", "KelasController@store");
     Route::put("/update_kelas/{id}", "KelasController@update");
@@ -58,8 +67,7 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::get('/getkelas/{id}', 'KelasController@getdetail');
     Route::get('/totalkelas', 'KelasController@total');
 
-    //SISWA
-    // Route::get('siswa', 'SiswaController@siswa');
+    // SISWA
     Route::post("/insert_siswa", "SiswaController@store");
     Route::put("/update_siswa/{id}", "SiswaController@update");
     Route::delete("/delete_siswa/{id}", "SiswaController@destroy");
@@ -67,15 +75,15 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::get('/getsiswa/{id}', 'SiswaController@getdetail');
     Route::get('/totalsiswa', 'SiswaController@total');
 
-    //SPP
-    Route::get('spp', 'SppController@spp');
+    // SPP
+    // Route::get('spp', 'SppController@spp');
     Route::post("/insert_spp", "SppController@store");
     Route::put("/update_spp/{id}", "SppController@update");
     Route::delete("/delete_spp/{id}", "SppController@destroy");
     Route::get('/spp/{id}', 'SppController@cari_data');
     Route::get('/getspp/{id}', 'SppController@getdetail');
 
-    //PETUGAS
+    // PETUGAS
     Route::get('petugas', 'PetugasController@petugas');
     Route::post("/insert_petugas", "PetugasController@store");
     Route::put("/update_petugas/{id}", "PetugasController@update");
@@ -84,7 +92,7 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::get('/getpetugas/{id}', 'PetugasController@getdetail');
     Route::get('/totalpetugas', 'PetugasController@total');
 
-    //PEMBAYARAN
+    // PEMBAYARAN
     Route::get('pembayaran', 'PembayaranController@pembayaran');
     Route::post("/insert_pembayaran", "PembayaranController@store");
     Route::put("/update_pembayaran/{id}", "PembayaranController@update");
@@ -93,12 +101,11 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::get('/getpembayaran/{id}', 'PembayaranController@getdetail');
     Route::get('/latest', 'PembayaranController@last');
 
-    //Tranksasi
-    Route::post('bayar', 'TransaksiController@bayar');
+    // Tranksasi
+    // Route::post('bayar', 'TransaksiController@bayar');
     Route::get('/kurang/{id}', 'TransaksiController@kurang');
 
-    //USER
-    // Route::get('user', 'UserController@user');
+    // USER
     Route::put("/update_user/{id}", "UserController@update");
     Route::delete('/delpet/{id}', 'UserController@delpet');
     Route::delete('/delsis/{id}', 'UserController@delsis');
@@ -107,14 +114,14 @@ Route::group(['middleware'=>['jwt.verify:admin']], function() {
     Route::get('/getusersis/{id}', 'UserController@getdetailsis');
 });
 
-//PETUGAS
+// PETUGAS
 Route::group(['middleware'=>['jwt.verify:petugas']], function() {
     Route::get('pembayarans', 'PembayaranController@pembayaran');
 
-    Route::post('bayars', 'TransaksiController@bayar');
+    // Route::post('bayars', 'TransaksiController@bayar');
 });
 
-//SISWA
+// SISWA
 Route::group(['middleware'=>['jwt.verify:siswa']], function() {
     Route::get('/kurang/{id}', 'TransaksiController@kurang');
     Route::get('/pembayaranss/{id}', 'PembayaranController@getnisn');
