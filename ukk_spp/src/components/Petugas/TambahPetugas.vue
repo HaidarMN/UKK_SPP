@@ -23,7 +23,7 @@
             placeholder="Ulangi password" autocomplete="off">
             <br>
             Level
-            <select name="level" class="form-control" v-model="level">
+            <select name="level" class="form-select" v-model="level">
                 <option value="" selected hidden disabled>Pilih level</option>
                 <option value="admin">Admin</option>
                 <option value="petugas">Petugas</option>
