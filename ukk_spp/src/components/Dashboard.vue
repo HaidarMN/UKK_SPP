@@ -55,7 +55,10 @@
                                     Siswa: {{sis.nama}} | 
                                 </span>
                                 <span>
-                                    SPP: {{last.bulan_spp}} {{last.tahun_spp}}
+                                    SPP: {{last.bulan_spp}} {{last.tahun_spp}} | 
+                                </span>
+                                <span>
+                                    Status: {{last.status}}
                                 </span>
                             </td>
                         </tr>

@@ -5,16 +5,18 @@
         <div class="grid-rp">
             <div class="add-form rp-1">
                 Bulan
-                <select name="bulan_spp" class="form-control" v-model="bulan">
+                <select name="bulan_spp" class="form-select" v-model="bulan">
                     <option value="" selected hidden disabled>Pilih bulan</option>
                     <option v-for="bln in listbln" :key="bln.key" v-bind:value="bln.key">
                         {{bln.val}}
                     </option>
                 </select>
                 <br>
-                Tahun
-                <input type="number" name="tahun" class="form-control" v-model="tahun" placeholder="Masukkan tahun"
-                autocomplete="off">
+                Tahun SPP
+                <select name="tahun" class="form-select" v-model="tahun">
+                    <option value="" selected hidden disabled>Pilih tahun</option>
+                    <option v-for="spp in listspp" :key="spp.id_spp" v-bind:value="spp.tahun">{{spp.tahun}}</option>
+                </select>
                 <br>
 
                 <!-- Button -->
@@ -100,6 +102,7 @@
                     {key:"Juli", val:"Juli"}, {key:"Agustus", val:"Agustus"}, {key:"September", val:"September"},
                     {key:"Oktober", val:"Oktober"}, {key:"November", val:"November"}, {key:"Desember", val:"Desember"}
                 ],
+                listspp:[],
                 report:[],
                 user:[],
                 siswa:[],
@@ -152,6 +155,20 @@
                 })
             },
 
+            getspp:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+
+                this.axios.get("http://localhost/lat_spp/public/api/spp", option).then((result) => {
+                    console.log(result)
+                    this.listspp = result.data
+                })
+            },
+
+
             generateReport() {
                 const doc = new jsPDF('p', 'pt', 'A4');
 
@@ -166,8 +183,8 @@
             }
         },
 
-        // components: {
-        //     VueHtml2pdf
-        // }
+        mounted() {
+            this.getspp()
+        }
     }
 </script>
