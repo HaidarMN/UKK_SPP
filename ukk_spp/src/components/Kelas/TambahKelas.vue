@@ -7,7 +7,7 @@
             autocomplete="off">
             <br>
             Jurusan
-            <select name="jurusan" class="form-control" v-model="jurusan">
+            <select name="jurusan" class="form-select" v-model="jurusan">
                 <option value="" selected hidden disabled>Pilih jurusan</option>
                 <option value="RPL">Rekayasa Perangkat Lunak</option>
                 <option value="TKJ">Teknik Komputer Jaringan</option>
